@@ -1,0 +1,76 @@
+.container
+	display: flex
+	justify-content: center
+	align-items: center
+	height: 100vh
+	flex-direction: column
+
+.game
+	background-image: url('/catcher/background.png')
+	width: 800px
+	height: 523px
+	position: relative
+	overflow: hidden
+
+.santa
+	background-image: url('/catcher/ded-left')
+	width: 250px*0.6
+	height: 366px*0.6
+	background-size: cover
+	left: 50%
+	margin-left: -250px*0.3+10px
+	bottom: 90px
+	position: absolute
+
+	&.left
+		background-image: url('/catcher/ded-left.png')
+		transform: translateX(-30px)
+
+	&.right
+		background-image: url('/catcher/ded-right.png')
+		transform: translateX(30px)
+
+	&.left-up
+		background-image: url('/catcher/ded-left-up.png')
+		transform: translateX(-30px)
+
+	&.right-up
+		background-image: url('/catcher/ded-right-up.png')
+		transform: translateX(30px)
+
+.present
+	width: 80px
+	height: 80px
+	background-size: contain
+	background-repeat: no-repeat
+	background-position: bottom center
+	position: absolute
+
+	&.catch
+		transition: 0.3s
+
+	&.fall
+		transition: 0.5s
+
+.playButton
+	width: 60px
+	height: 60px
+	background: none
+	background-size: contain
+	background-repeat: no-repeat
+	border: none
+	outline: none
+
+	&:hover
+		opacity: 0.9
+		cursor: pointer
+
+	&:active
+		opacity: 0.7
+
+.buttonContainer
+	display: flex
+	align-items: center
+
+	*
+		margin: 0 15px
