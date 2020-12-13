@@ -1,0 +1,64 @@
+@import 'styles/variables'
+
+.hit
+	position: absolute
+	top: -14px
+	left: -80px
+	width: 350px
+
+	@media(max-width: 1370px)
+		left: 0px
+
+.container
+	display: flex
+	flex-direction: column
+	justify-content: center
+	&>div
+		display: flex
+		justify-content: space-between
+		align-items: center 
+
+.textBlock
+	width: 450px
+	text-align: center
+
+.title, .leader, .role
+	font-size: 1.15em
+	color: $primary
+	font-weight: 600
+
+.text
+	font-size: 1.2em
+	margin: 30px 0
+
+.role
+	font-size: 1em
+	font-weight: 450
+
+.video
+	width: 680px
+	height: 380px
+
+.likePanel
+	padding-left: 77px
+	padding-top: 16px
+	margin-top: 13px
+	position: relative
+
+.like
+	position: absolute
+	left: 0
+	top: 0
+	width: 60px
+	height: 60px
+	background-color: $primary
+	border: none
+	border-radius: 50%
+
+	img
+		width: 25px
+		transform: translateY(2px)
+
+.red
+	color: $primary
+	font-weight: 600

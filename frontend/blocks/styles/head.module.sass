@@ -1,0 +1,105 @@
+@import 'styles/variables'
+
+.top
+	display: flex
+	align-items: flex-start
+	margin-top: 10px
+	z-index: 1
+	position: relative
+	.imageMap
+		max-height: 170px
+		margin-top: 5px
+		margin-right: 50px
+		flex: 0 0 auto
+
+	.imageLogo
+		max-height: 90px
+		margin-top: 15px
+		flex: 0 0 auto
+
+	.title
+		text-align: center
+		color: white
+		margin: 0 auto
+
+		h1
+			font-size: 3em
+			text-transform: uppercase
+			margin: 0
+			line-height: 1em
+
+		div
+			font-size: 1.8em
+
+.hitParad
+	position: absolute
+	width: 340px
+	left: 50%
+	margin-left: -340px * 0.5
+	top: 112px
+
+.buttons
+	position: absolute
+	left: 0
+	right: 0
+	bottom: 10px
+	display: flex
+	justify-content: space-between
+	z-index: 2
+	a
+		color: #990000
+		background: linear-gradient(180deg, white 59.37%, #C7C5C6 100%)
+		padding: 5px
+		width: 12em
+		display: inline-block
+		font-size: 1em
+		font-weight: 600
+		text-transform: uppercase
+		white-space: pre-wrap
+		text-align: center
+		vertical-align: middle
+		border: 5px solid white
+		box-shadow: 0 0 0 1px #700404
+		border-radius: 3em
+
+.star
+	background-image: url('/images/star-up.png')
+	background-size: cover
+	background-position: center
+	position: absolute
+	text-align: center
+	width: 235px * 0.8
+	height: 768px * 0.8
+	padding-top: 627px * 0.8
+	box-sizing: border-box
+	font-weight: 700
+	font-size: 1.1em
+	color: #700404
+	pointer-events: none
+
+	a
+		pointer-events: all
+		text-decoration: underline
+
+.tableTop
+
+	background-image: url(/images/table-top.png)
+	background-size: cover
+	background-position: center
+	position: absolute
+	left: 50%
+	top: 0px
+
+	margin-left: -718px*0.5*0.75
+	width: 718px*0.75
+	height: 809px*0.75
+
+	padding-top: 630px *0.75
+
+	div
+		transform: rotate(-7deg)
+		font-size: 1.1em
+		text-align: center
+		color:#4B4B4B
+
+

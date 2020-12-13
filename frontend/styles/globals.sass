@@ -1,7 +1,9 @@
+@import fonts
+@import common
+	
 html,body 
 	padding: 0
 	margin: 0
-	font-family: sans-serif
 
 a
 	color: inherit
@@ -9,3 +11,25 @@ a
 
 *
 	box-sizing: border-box
+
+.h
+	height: 100vh
+	overflow: hidden
+	position: relative
+	background-size: cover
+	background-position: center
+
+button
+	outline: none
+	padding: 0
+	&:hover
+		cursor: pointer
+
+.container
+	width: 1280px
+	margin: 0 auto
+	position: relative
+
+	@media(max-width: 1300px)
+		width: auto
+		margin: 0
