@@ -1,0 +1,41 @@
+.background
+	background-image: url(/images/background-gallery.jpg)
+	background-size: cover
+	background-position: center bottom
+
+.container
+	display: flex
+	flex-direction: column
+	justify-content: center
+	
+.photosContainer
+	display: flex
+	justify-content: space-between
+	
+$width: 110px
+
+.photos
+	display: flex
+	flex-wrap: wrap
+	width: $width*3 + 5px*6
+
+
+.photo
+	width: $width
+	height: $width
+	margin: 5px
+	background-size: cover
+	background-position: center
+	border: none
+
+.bigPhoto
+	width: $width*4 + 5px*6
+	height: $width*4 + 5px*6
+	flex: 0 0 auto
+	background-size: cover
+	background-position: center
+	margin: 5px
+
+.button
+	align-self: center
+	margin-top: 15px
