@@ -5,6 +5,7 @@ import styles from './styles/participant.module.sass'
 
 import Video from 'components/video'
 import videoStyles from 'components/video.module.sass'
+import { openCongrulationModal } from 'components/modal-window'
 
 export default function ParticipantBlock ({ headerClassName, likes, name, text, leader, role, id, preview }){
 
@@ -17,6 +18,7 @@ export default function ParticipantBlock ({ headerClassName, likes, name, text, 
 					<div className={styles.textBlock}>
 						<div className={styles.title}>Поздравления от руководителей направления «{name}»</div>
 						<div className={styles.text}>«{text}»</div>
+						<button className={styles.readMore} onClick={openCongrulationModal}>Читать далее...</button>
 						<div className={styles.leader}>{leader}</div>
 						<div className={styles.role}>{role}</div>
 					</div>

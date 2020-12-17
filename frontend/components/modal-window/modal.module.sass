@@ -1,0 +1,214 @@
+@import 'styles/variables'
+
+.fixed
+	position: fixed
+
+.black
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	min-height: 100vh
+	background-color: rgba(0, 0, 0, 0.8)
+	z-index: 10
+	display: flex
+	align-items: center
+	justify-content: center
+	animation: openBlack 0.15s
+	overflow: auto
+
+.modal
+	background-color: white
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1)
+	animation: open 0.2s
+	margin: 20px
+	min-width: 600px
+	overflow: hidden
+
+	@media(max-width: 800px)
+		min-width: 200px
+		margin: 8px
+
+
+@keyframes openBlack
+	from
+		opacity: 0
+	to
+		opacity: 1
+
+@keyframes open
+	from 
+		transform: scale(0.8)
+	to
+		transition: scale(1)
+
+
+.youtube, .permission
+	width: 70vw
+	height: 70vw * 9 / 16
+
+	@media(min-width: 1200px)
+		width: 1000px
+		height: 1000px * 9 / 16
+
+	@media(max-width: 700px)
+		width: 97vw
+		height: 97vw * 9 / 16
+
+.video
+	position: relative
+	overflow: visible
+	video
+		display: block
+		max-width: 1000px
+		max-height: 700px
+
+		@media(max-width: 1200px)
+			max-width: 80vw
+
+		@media(max-width: 670px)
+			max-width: 96vw
+
+		@media(max-height: 800px)
+			max-height: 70vh
+
+	.buttons
+		display: flex
+		justify-content: center
+		align-items: center
+		position: absolute
+		left: 0
+		right: 0
+		bottom: -60px
+		height: 60px
+		background-color: white
+
+		button
+			margin: 0 20px
+
+	.recordAlert
+		position: absolute
+		font-weight: 700
+		top: 4px
+		left: 10px
+		font-size: 1.1em
+		
+
+.permission
+	display: flex
+	justify-content: center
+	align-items: center
+	flex-direction: column
+	font-size: 1.3em
+	text-align: center
+	line-height: 1.5em
+
+	video
+		display: none
+
+
+.makePhoto
+	min-width: 0
+	width: 60vh
+	height: 60vh
+	overflow: visible
+	position: relative
+
+	@media(min-height: 800px)
+		width: 800px * 0.6
+		height: 800px * 0.6
+
+	@media (max-aspect-ratio: 5/7)
+		width:95vw
+		height: 95vw
+
+	.label
+		display: flex
+		justify-content: center
+		align-items: center
+		width: 100%
+		height: 100%
+		padding: 30px
+		text-align: center 
+
+	video
+		width: 100%
+		height: 100%
+		object-fit: cover
+
+	canvas 
+		width: 100%
+		height: 100%
+
+	.flash
+		position: absolute
+		z-index: 5
+		left: 0
+		top: 0
+		right: 0
+		bottom: 0
+		background-color: white
+		opacity: 0
+		transition: opacity 0.5s
+		pointer-events: none
+
+		&.active
+			opacity: 1
+			transition: opacity 0.04s
+
+	.panel
+		position: absolute
+		left: 0
+		right: 0
+		top: 100%
+		background-color: white
+		display: flex 
+		flex-direction: column
+		align-items: center
+
+		button
+			margin: 10px
+
+	.stickers
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-between
+		button
+			border: none
+			background: none
+			margin: 5px
+
+			&:last-child
+				margin-right: auto
+
+	&.up
+		margin-top: -200px
+
+		img
+			max-height: 70px
+			max-width: 80px
+			@media(max-width: 800px)
+				max-height: 50px
+				max-width: 50px
+
+
+.congrulation
+	width: 1000px
+	padding: 20px 35px
+
+	.header
+		display: flex
+		align-items: baseline
+		margin-bottom: 15px
+
+	.name
+		color: $primary
+		font-weight: 600
+		font-size: 1.3em
+
+	.unit
+		color: $primary
+		margin-left: 10px
+
+	.text
+		white-space: pre-wrap
