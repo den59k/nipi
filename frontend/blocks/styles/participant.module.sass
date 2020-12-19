@@ -6,8 +6,10 @@
 	left: -80px
 	width: 350px
 
-	@media(max-width: 1370px)
+	@media(max-width: 1400px)
 		left: 0px
+		top: -20px
+		width: 270px
 
 .container
 	display: flex
@@ -63,6 +65,10 @@
 	border: none
 	border-radius: 50%
 
+	&.likeOff
+		background: none
+		border: 2px solid $primary
+
 	img
 		width: 25px
 		transform: translateY(2px)
@@ -70,3 +76,23 @@
 .red
 	color: $primary
 	font-weight: 600
+
+
+.buttons
+	button
+		background: none
+		border: none
+		background-image: url('/images/icons/right.svg')
+		background-size: cover
+		background-position: center
+		width: 85px
+		height: 85px
+		margin: 0 45px
+		opacity: 0.5
+		transition: opacity 0.2s
+
+		&:hover
+			opacity: 1
+
+		&.left
+			transform: scale(-1, 1)

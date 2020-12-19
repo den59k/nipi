@@ -1,0 +1,50 @@
+@import constants
+
+.main
+	background-color: $bkg-color
+	min-height: 100vh
+
+	nav
+		position: fixed
+		width: 100px
+		display: flex
+		height: 100vh
+		flex-direction: column
+		justify-content: center
+		align-items: center
+
+		a
+			padding: 30px
+
+			svg
+				font-size: 35px
+				color: $bkg-dark-color
+				transition: color 0.2s
+			
+			&.active svg
+				color: $active-color
+
+	&>.content
+		flex: 1 1 auto
+		padding: 0 100px
+
+		h1
+			font-size: 2em
+			color: $active-color
+
+		header
+			display: flex
+			align-items: center
+			justify-content: space-between
+			padding: 0 30px
+			
+			.segment
+				width: 180px
+				border-color: $bkg-dark-color
+				background: none
+
+				button:not(.active)
+					color: $bkg-dark-color
+
+
+	

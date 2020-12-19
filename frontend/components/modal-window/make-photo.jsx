@@ -6,7 +6,7 @@ import { calcPos, getCanvasBlob, redraw, video2canvas, getStyleButton, findStick
 import styles from './modal.module.sass'
 
 const stickers = [];
-for(let i = 1; i <= 10; i++)
+for(let i = 1; i <= 18; i++)
 	stickers.push('/images/stickers/'+i+'.svg')
 
 function MakePhotoModal ({onSubmit}){
@@ -161,7 +161,7 @@ function MakePhotoModal ({onSubmit}){
 
 			<div className={cn(styles.flash, flash && styles.active)}></div>
 			<div className={styles.panel}>
-				{mode === 'accepted' && <button className="button" onClick={onPhoto}>Сфотографировать</button>}
+				{mode === 'accepted' && <button className="mega-button" onClick={onPhoto}>Сфотографировать</button>}
 				{mode === 'stickers' && (
 					<>
 					<div className={styles.stickers}>
@@ -171,7 +171,7 @@ function MakePhotoModal ({onSubmit}){
 							</button>
 						))}
 					</div>
-					<button className="button" onClick={_onSubmit}>Сохранить</button>
+					<button className="mega-button" onClick={_onSubmit}>Сохранить</button>
 					</>
 				)}
 			</div>

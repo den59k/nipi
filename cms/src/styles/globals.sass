@@ -1,0 +1,39 @@
+@import constants
+@import components
+@import blocks
+@import modal
+@import chat
+
+body
+	font-family: "Open Sans", serif
+	font-size: 14px
+	margin: 0
+	padding: 0
+
+	@media(max-width: 1000px)
+		font-size: 13px
+
+	@media(max-width: 600px)
+		font-size: 12px
+
+
+.hide
+	visibility: hidden
+
+.m
+	margin: 0 10px
+
+button, textarea, input
+	font-family: inherit
+	outline: none
+	font-size: inherit
+
+.flex-center
+	display: flex 
+	align-items: center
+	justify-content: center
+	flex-direction: column
+	min-height: 100vh
+
+.text-center
+	text-align: center

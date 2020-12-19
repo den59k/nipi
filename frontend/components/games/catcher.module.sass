@@ -2,8 +2,9 @@
 	display: flex
 	justify-content: center
 	align-items: center
-	height: 100vh
 	flex-direction: column
+	width: 900px
+	margin: 0 auto
 
 .game
 	background-image: url('/catcher/background.png')
@@ -11,6 +12,13 @@
 	height: 523px
 	position: relative
 	overflow: hidden
+
+.title
+	position: absolute
+	top: 0
+	left: 0
+	right: 0
+	height: 20px
 
 .santa
 	background-image: url('/catcher/ded-left')
@@ -71,6 +79,12 @@
 .buttonContainer
 	display: flex
 	align-items: center
+	margin-top: -20px
+	z-index: 2
+	font-weight: 600
 
 	*
 		margin: 0 15px
+
+.hide
+	display: none 

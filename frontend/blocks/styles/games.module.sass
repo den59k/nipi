@@ -1,0 +1,61 @@
+.background
+	background-image: url('/images/background-games.jpg')
+	background-size: cover 
+	background-position: center
+
+.container
+	position: relative
+	width: 1200px
+	margin: 0 auto
+
+	@media(min-height: 700px)
+		margin-top: 4vh
+
+	@media(min-height: 800px)
+		margin-top: 9vh
+
+	h3
+		color: #3D629A
+		text-align: center
+		text-transform: uppercase
+
+	.gameContainer
+		transition: opacity 0.5s
+		
+		&>div
+			transition: transform 0.5s
+
+	.hideLeft, .hideRight
+		position: absolute
+		top: 0
+		left: 50%
+		transform: translateX(-50%)
+		opacity: 0
+		pointer-events: none
+		z-index: 1
+
+	.hideLeft>div
+		transform: translate(70%)
+		transition: transform 0.7s
+
+	.hideRight>div
+		transform: translate(-70%)
+		transition: transform 0.7s
+
+.leftButton, .rightButton
+	position: absolute
+	top: 250px
+	background: none
+	border: none 
+	transition: 0.3s
+	&.hide
+		opacity: 0
+		transform: scale(0.7)
+
+.leftButton
+	left: 0
+	img
+		transform: scale(-1, 1)
+
+.rightButton
+	right: 0

@@ -7,8 +7,16 @@ import { openYoutubeModal } from './youtube'
 import { openRecordModal } from './record-video'
 import { openMakePhotoModal } from './make-photo'
 import { openVideoModal } from './video'
+import { openGameModal } from './game'
 
-export { openYoutubeModal, openRecordModal, openMakePhotoModal, openVideoModal, openCongrulationModal }
+export { 
+	openYoutubeModal, 
+	openRecordModal, 
+	openMakePhotoModal, 
+	openVideoModal, 
+	openCongrulationModal, 
+	openGameModal 
+}
 
 export const modal = {
 	open: () => console.log("null action openModal"),

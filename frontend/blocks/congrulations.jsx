@@ -5,12 +5,12 @@ import Video from 'components/video'
 
 const videos = [
 	{ 
-		title: "Поздравление Заместителя Генерального\nдиректора филиала «ПермНИПИнефть»",
+		title: "Поздравление\nЗаместителя Генерального директора\nфилиала «ПермНИПИнефть»",
 		name: "Надежды Алексеевны Лядовой",
 		id: "uEaouwm3ebA"
 	},
 	{ 
-		title: "Поздравление Председателя Первичной\nПрофсоюзной Организации",
+		title: "Поздравление\nПредседателя Первичной\nПрофсоюзной Организации",
 		name: "Ирины Викторовны Абалмасовой",
 		id: "uEaouwm3ebA"
 	}
@@ -19,7 +19,7 @@ const videos = [
 export default function Congrulations(){
 
 	return (
-		<div className="h flex">
+		<div className="h flex" id="congrulations" style={{backgroundImage: `url(/images/background-0.jpg)`}}>
 			<h2>Новогодние поздравления</h2>
 			<div className={cn("content container", styles.container)}>
 				<div>

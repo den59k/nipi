@@ -9,10 +9,12 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "mongodb": "^3.6.3",
     "next": "10.0.3",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-icons": "^4.1.0",
-    "sass": "^1.29.0"
+    "sass": "^1.29.0",
+    "swr": "^0.3.10"
   }
 }

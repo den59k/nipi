@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import styles from './barley.module.sass'
+import cn from 'classnames'
 
 const cells = [];
 
@@ -32,7 +33,7 @@ const moveElementX = (state, index, dir = 1) => {
 			newState[i] = newState[i-1];
 		newState[index] = null;
 	}
-
+	if(newState[index] !== null) return state;
 	return newState;
 }
 
@@ -53,7 +54,7 @@ const moveElementY = (state, index, dir = 1) => {
 			newState[i] = newState[i-div];
 		newState[index] = null;
 	}
-
+	if(newState[index] !== null) return state;
 	return newState;
 }
 
@@ -96,82 +97,126 @@ const shuffleState = (state) => {
 	return state;
 }
 
+function getPos(e){
+	if(e.touches)
+		e = e.touches[0]
+	return [ e.clientX, e.clientY ]
+}
+
+function isWin (poses){
+	for(let i = 0; i < div*div-1; i++)
+		if(poses[i] !== i) return false
+	
+	return true
+}
+
+function sign (delta){
+	if(delta < 0) return -1
+	if(delta > 0) return 1
+	return 0
+}
+
 //Игра - пятнашки
-export default function Barley (){
+export default function Barley ({src, className, onWin}){
 
-	const [poses, setPoses] = useState(indexes)
+	const [ poses, setPoses ] = useState(indexes)
+	const [ steps, setSteps ] = useState(-1)
+	const [ started, setStarted ] = useState(false)
+	const [ played, setPlayed ] = useState(false)
 
-	const image = "/lukoil.jpg"
+	const image = src
 
 	useEffect(() => {
-		const keydown = (e) => {
-			if(e.code === 'ArrowUp')
-				setPoses(state => moveY(state, 1))
-			if(e.code === 'ArrowDown')
-				setPoses(state => moveY(state, -1))
-			if(e.code === 'ArrowLeft')
-				setPoses(state => moveX(state, 1))
-			if(e.code === 'ArrowRight')
-				setPoses(state => moveX(state, -1))
+		setSteps(steps => steps+1)
+	}, [poses])
 
-		};
-
-		document.addEventListener('keydown', keydown);
-
-		return () => document.removeEventListener('keydown', keydown);
-	}, []);
+	useEffect(() => {
+		if(started && isWin(poses)){
+			setTimeout(onWin, 500)
+			setStarted(false)
+			setPlayed(false)
+		}
+	}, [poses, started])
 
 	const onMouseDown = (_e, index) => {
-		const _pos = [_e.clientX, _e.clientY];
+		if(!started) return
+		const _pos = getPos(_e);
+	
 		const move = (e) => {
-			const pos = [e.clientX, e.clientY];
+			e.preventDefault()
+			e.stopPropagation()
+			const pos = getPos(e);
 			const delta = pos.map((i, _i) => i-_pos[_i]);
 
 			if(Math.abs(delta[0]) > 20){
-				setPoses(state => moveElementX(state, index, Math.sign(delta[0])));
+				setPoses(state => moveElementX(state, index, sign(delta[0])));
+				
 				document.removeEventListener('mousemove', move)
+				document.removeEventListener('touchmove', move)
 			}
 
 			if(Math.abs(delta[1]) > 20){
-				setPoses(state => moveElementY(state, index, Math.sign(delta[1])));
+				setPoses(state => moveElementY(state, index, sign(delta[1])));
 				document.removeEventListener('mousemove', move)
+				document.removeEventListener('touchmove', move)
 			}
+			return false
 		}
-
-		document.addEventListener('mousemove', move);
-		document.addEventListener('mouseup', () => document.removeEventListener('mousemove', move), {once: true});
+		
+		if(_e.touches){
+			document.addEventListener('touchmove', move, { passive: false });
+			document.addEventListener('touchend', () => document.removeEventListener('touchmove', move), {once: true});
+		}else{
+			document.addEventListener('mousemove', move);
+			document.addEventListener('mouseup', () => document.removeEventListener('mousemove', move), {once: true});
+		}
 	}
 
 	const shuffle = () => {
 		let counter = 0;
+		setPlayed(true)
 		const interval = setInterval(() => {
 
 			setPoses(state => shuffleState(state));
-
+			
 			counter++;
-			if(counter > 50)
-				clearInterval(interval);
+			if(counter > 50){
+				clearInterval(interval)
+				setStarted(true)
+				setSteps(0)
+			}
 		}, 100);
 
 	}
 
 	return (
-		<div>
-			<div className={styles.container}>
-				{cells.map((cell, index) => (
-					<div className={styles.cell} key={cell.x+ " "+cell.y} style={{
-						top: Math.floor(poses.indexOf(index)/div)*100/div+'%',
-						left: poses.indexOf(index)%div*100/div+'%',
-						width: 100/div+'%',
-						height: 100/div+'%'
-					}}>
-						<button style={{backgroundImage: `url(${image})`, backgroundPosition: `${cell.x*100/(div-1)}% ${cell.y*100/(div-1)}%`}} 
-							onMouseDown={e => onMouseDown(e, poses.indexOf(index))}>
-						</button>
-					</div>
-				))}
+		<div className={cn(className, styles.mainContainer)}>
+			{/* <div className={styles.preview} style={{backgroundImage: `url(${image})`}}></div> */}
+			<div className={styles.background}>
+				<div className={styles.ice}><h3>Пятнашки</h3></div>
+				<div className={styles.container}>
+					{cells.map((cell, index) => (
+						<div className={styles.cell} key={cell.x+ " "+cell.y} style={{
+							top: Math.floor(poses.indexOf(index)/div)*100/div+'%',
+							left: poses.indexOf(index)%div*100/div+'%',
+							width: 100/div+'%',
+							height: 100/div+'%'
+						}}>
+							<button style={{backgroundImage: `url(${image})`, backgroundPosition: `${cell.x*100/(div-1)}% ${cell.y*100/(div-1)}%`}} 
+								onMouseDown={e => onMouseDown(e, poses.indexOf(index))} onTouchStart={e => onMouseDown(e, poses.indexOf(index))}>
+							</button>
+						</div>
+					))}
+				</div>
 			</div>
-			<button className={styles.button} onClick={shuffle}>Перемешать</button>
+			<div className={styles.panel}>
+				<button style={{backgroundImage: 'url(/catcher/button-play.png)'}} className={cn(
+					styles.playButton,
+					played && styles.hide
+				)} onClick={shuffle}></button>
+				
+				<div className={cn(!started && styles.hide)}>Ходы: {steps}</div> 
+			</div>
 		</div>
 	);
 

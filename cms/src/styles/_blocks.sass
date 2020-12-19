@@ -1,0 +1,167 @@
+.block-container
+	background-color: white
+	border-radius: 27px
+	padding: 15px 30px
+	margin-bottom: 40px
+	
+	transition: opacity 0.3s, transform 0.3s
+
+	&.hidden
+		opacity: 0
+		transform: translateY(40px)
+		visibility: hidden
+
+	.block-header
+		display: flex
+		justify-content: flex-start
+		align-items: center
+
+		button
+			padding: 0 1.6em
+			height: 2.7em
+			font-size: 0.95em
+
+	h3, h4
+		margin: 0
+		margin-right: 20px
+		font-size: 1.3em
+
+	h4
+		font-size: 1.1em
+
+
+.control-container
+	margin-top: 20px
+
+
+.services-blocks
+	display: flex
+	align-items: flex-start
+
+	.block-container
+		margin-right: 20px
+		min-width: 300px
+
+		@media(max-width: 1500px)
+			min-width: 260px
+
+	.search
+		margin-top: 18px
+		margin-bottom: 10px
+
+.list-container
+	display: flex
+	flex-direction: column
+	position: relative
+
+	.list-item
+		height: 3.8em
+		display: flex
+		border-radius: 4px
+		margin-left: -10px
+		padding-left: 10px
+		margin-right: -10px
+		padding-right: 5px
+		position: relative
+
+		&:hover
+			background-color: lighten($gray-bkg, 2%)
+
+		&.selected
+			button, .sub
+				color: $active-color
+
+		&.selected:before
+			content: ""
+			position: absolute
+			width: 4px
+			height: 2.6em
+			top: 50%
+			margin-top: -1.3em
+			border-radius: 2px
+			left: 0px
+			background-color: $active-color
+
+		.sub
+			font-size: 0.8em
+			color: $gray
+			font-weight: 400
+
+		.sub, .title
+			white-space: nowrap
+			overflow: hidden
+			text-overflow: ellipsis
+
+		button
+			flex: 1 1 auto
+			text-align: left
+			padding: 0
+			overflow: hidden
+
+			&.more
+				flex: 0 0 30px
+				font-size: 1.8em
+				color: $gray
+				text-align: right
+
+.list-menu
+	position: absolute
+	background-color: white
+	right: 0
+	display: flex
+	flex-direction: column
+	padding: 0.6em 0
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)
+	border-radius: 0.6em
+	animation: open 0.12s
+	transform-origin: 100% 10px
+	z-index: 2
+
+	button
+		height: 2.7em
+		padding: 0 0.9em
+		text-align: left
+		font-size: 0.95em
+		display: flex
+		justify-content: space-between
+		align-items: center
+
+		svg
+			font-size: 1.6em
+			color: $gray
+			margin-left: 10px
+
+		&:not(:last-child)
+			border-bottom: 1px solid $gray-bkg
+		
+		&:hover
+			background-color: $gray-bkg
+				
+.gallery
+	display: flex
+	flex-wrap: wrap
+
+	&>button
+		img
+			max-height: 90px
+
+		&:hover
+			opacity: 0.9
+
+	.youtube
+		width: 160px
+		height: 90px
+		background-position: center
+		background-size: cover
+
+		svg
+			color: white
+			font-size: 50px
+
+@keyframes open
+	from 
+		opacity: 0
+		transform: scale(0.5)
+	to
+		opacity: 1
+		transition: scale(1)

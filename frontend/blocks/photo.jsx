@@ -1,13 +1,11 @@
+import { useState } from 'react'
 import cn from 'classnames'
 import { useResize } from 'libs/resize'
+import { mutate } from 'swr'
 
 import styles from './styles/photo.module.sass'
 
-const photos = [
-	{ src: "/db/photos/1.jpg", preview: "/db/photos/1.jpg" },
-	{ src: "/db/photos/1.jpg", preview: "/db/photos/1.jpg" },
-	{ src: "/db/photos/1.jpg", preview: "/db/photos/1.jpg" }
-]
+import { openMakePhotoModal, closeModal } from 'components/modal-window'
 
 const resizing = [
 	{ min: 1200, value: 12 },
@@ -33,24 +31,36 @@ function getPhotos (photos, start, end, onPhotoClick){
 	return arr
 }
 
-export default function ParticipantBlock ({ headerClassName, likes, name, text, leader, role, id, preview }){
+export default function PhotoGalleryBlock ({ photos }){
 
+	const [ currentPhoto, setCurrentPhoto ] = useState(0)
 	const count = useResize(resizing)
 
-	const onPhotoClick = (item, index) => {
-
+	const onPhotoClick = (index) => {
+		setCurrentPhoto(index)
 	}
 
+	const onMakePhoto = () => {
+		openMakePhotoModal(async (buffer) => {
+			const json = await fetch('/api/photos/upload', { method: 'POST', body: buffer })
+			const response = await json.json()
+			mutate('/api')
+			closeModal()
+		})
+	}	
+
 	return (
-		<div className={cn("h flex", styles.background)}>
+		<div className={cn("h flex", styles.background)} id="photo-gallery">
 			<h2>Новогодняя фотогалерея</h2>
 			<div className={cn("content container", styles.container)}>
 				<div className={styles.photosContainer}>
 					<div className={styles.photos}>{getPhotos(photos, 0, count, onPhotoClick)}</div>
-					<div className={styles.bigPhoto} style={{backgroundImage: `url(${photos[0].preview})`}}></div>
+					<div className={styles.bigPhoto} style={{
+						backgroundImage: `url(${photos[currentPhoto]?photos[currentPhoto].src:'/images/preview-gallery.jpg'
+					})`}}></div>
 					<div className={styles.photos}>{getPhotos(photos, count, count*2, onPhotoClick)}</div>
 				</div>
-				<button className={cn("mega-button", styles.button)}>Сделать праздничное фото</button>
+				<button className={cn("mega-button", styles.button)} onClick={onMakePhoto}>Сделать праздничное фото</button>
 			</div>
 		</div>
 	)

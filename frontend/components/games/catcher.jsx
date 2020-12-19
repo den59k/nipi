@@ -3,6 +3,8 @@ import cn from 'classnames'
 
 import styles from './catcher.module.sass'
 
+import { openGameModal } from 'components/modal-window'
+
 function rand(max){
 	return Math.floor(Math.random()*(max+1))
 }
@@ -39,11 +41,13 @@ function getStyle(present){
 }
 
 let counter = 0;
-export default function Catcher(){
+export default function Catcher({className, onWin, active}){
 	
 	const [ pos, setPos ] = useState('left');
 	const [ presents, setPresents ] = useState([]);
 	const [ gameState, setGameState ] = useState({started: false, scores: 0, falls: 0, interval: null, timeout: null});
+
+	const maxScores = 5
 
 	const posRef = useRef();
 	posRef.current = pos;
@@ -52,6 +56,23 @@ export default function Catcher(){
 		const newPresent = {id: counter++, level: rand(1), pos: Math.random() < 0.5?-1: 1, step: 0, type: rand(4), catch: false, fall: false};
 		setPresents(state => [...state, newPresent]);
 	}
+
+	const { falls, scores } = gameState
+
+	useEffect(() => {
+		console.log(falls)
+		if(falls >= 3){
+			clearTimeout(gameState.timeout)
+			clearInterval(gameState.interval)
+			setTimeout(() => {
+				stopGame()
+				if(scores >= maxScores)
+					onWin()
+				else
+					openGameModal('Неудача', "Вам не удалось собрать нужное количество подарков.\nПопробуйте еще раз!")
+			}, 800)
+		}
+	}, [ falls, scores ])
 
 	useEffect(() => {
 		const keydown = (e) => {
@@ -68,11 +89,7 @@ export default function Catcher(){
 			if(e.code === 'ArrowRight' || e.key === 'Right')
 				setPos(state => (state === 'left-up' || state === 'right-up')?'right-up': 'right');
 
-			if(e.code === 'Space' || e.key === 'Spacebar'){
-				startGame();
-			}
-
-			if(e.code === 'ArrowDown' || e.code === 'ArrowUp' || e.code === 'ArrowLeft' || e.code === 'ArrowRight' || e.code === 'Space')
+			if(e.code === 'ArrowDown' || e.code === 'ArrowUp' || e.code === 'ArrowLeft' || e.code === 'ArrowRight')
 				e.preventDefault();
 	
 		}
@@ -84,17 +101,25 @@ export default function Catcher(){
 		}
 	}, []);
 
-	function startGame () {
+	useEffect(() => {
+		if(active === false) stopGame()
+	}, [active])
+
+	const stopGame = () => {
+		clearInterval(gameState.interval);
+		clearTimeout(gameState.timeout);
+		setGameState(state => ({...state, started: false, interval: null, timeout: null}))
+		setPresents([]);
+	}
+
+	const startGame =  () => {
 		if(gameState.started === true) {
-			clearInterval(gameState.interval);
-			clearTimeout(gameState.timeout);
-			setGameState(state => ({...state, started: false, interval: null, timeout: null}))
-			setPresents([]);
+			stopGame()
 			return
 		}
 		const interval = setInterval(() => {
 			setPresents(state => state.map(item => {
-				const newItem = {...item, step: item.step+0.01};
+				const newItem = {...item, step: item.step+0.012};
 
 				if(newItem.step > 1 && item.catch === false && item.fall === false && posRef.current === ((item.pos < 0)?'left': 'right')+(item.level?'-up': '')){
 					newItem.catch = true;
@@ -109,15 +134,15 @@ export default function Catcher(){
 				}
 				return newItem;
 			}));
-		}, 20);
+		}, 30);
 
-		function spawn (){
+		const spawn = () => {
 			addPresent();
 
 			setGameState(state => {
 				if(!state.started) return state;
-				const time = (Math.floor(Math.random()*100)+100)*40/Math.max(Math.sqrt(state.scores), 5);
-				console.log(time);
+				const time = (Math.floor(Math.random()*100)+100)*40/Math.max(Math.sqrt(state.scores), 3);
+
 				const timeout = setTimeout(spawn, time);
 				return {...state, timeout};
 			});
@@ -128,8 +153,9 @@ export default function Catcher(){
 
 
 	return (
-		<div className={styles.container}>
+		<div className={cn(styles.container, className)}>
 			<div className={styles.game}>
+				<h3 className={styles.title}>Ловец подарков</h3>
 				<div className={cn(styles.santa, styles[pos])}></div>
 				{presents.map(present => (
 					<div key={present.id} className={cn(styles.present, present.catch && styles.catch, present.fall && styles.fall)} style={getStyle(present)}>
@@ -137,9 +163,11 @@ export default function Catcher(){
 				))}
 			</div>
 			<div className={styles.buttonContainer}>
-				<button style={{backgroundImage: 'url(/catcher/button-play.png)'}} className={styles.playButton} onClick={startGame}></button>
-				<div>Пойманных подарков: {gameState.scores}</div>
-				<div>Пропущенных подарков: {gameState.falls}</div>
+				<button style={{backgroundImage: 'url(/catcher/button-play.png)'}} className={cn(
+					styles.playButton, gameState.started && styles.hide
+				)} onClick={startGame}></button>
+				<div className={cn(!gameState.started && styles.hide)}>Пойманных подарков: {gameState.scores} из {maxScores}</div>
+				<div className={cn(!gameState.started && styles.hide)}>Пропущенных подарков: {gameState.falls} из 3</div>
 			</div>
 		</div>
 	);

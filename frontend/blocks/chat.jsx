@@ -1,21 +1,10 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import cn from 'classnames'
-import styles from './styles/chat.module.sass'
+import { GET, REST } from 'libs/fetch'
+import loadFile from 'libs/file-loader'
+import { mutate } from 'swr'
 
-const messages = [
-	{ 
-		name: "Анастасия", 
-		surname: "Швецова", 
-		unit: "Программист", 
-		text: "С Новым годом! Пусть за окном будет сказка, а в доме — атмосфера счастья!"
-	},
-	{ 
-		name: "Анастасия", 
-		surname: "Швецова", 
-		unit: "Программист", 
-		text: "С Новым годом! Пусть за окном будет сказка, а в доме — атмосфера счастья!"
-	}
-]
+import styles from './styles/chat.module.sass'
 
 const fields = {
 	name: { label: "Имя", className: styles.double },
@@ -23,26 +12,69 @@ const fields = {
 	unit: { label: "Направление" },
 }
 
-export default function ChatBlock(){
+export default function ChatBlock({messages}){
 
 	const [ values, setValues ] = useState({})
+	const [ disable, setDisable ] = useState(false)
+
+	const chatRef = useRef()
+	const fileRef = useRef()
+
+	const length = messages.length
+
+	useEffect(() => {
+		chatRef.current.scrollTop = 9999
+		chatRef.current.parentElement.scrollTop = 9999
+	}, [length])	
 
 	const onChange = (obj) => {
 		setValues({...values, ...obj})
 	}
 
+	const onSubmit = async (e) => {
+		e.preventDefault()
+		if(disable) return
+		setDisable(true)
+	
+		const response = await REST('/api/chat', values)
+
+		setDisable(false)
+		onChange({text: ""})
+		mutate('/api')
+	}
+
+	const onFileChange = async (e) => {
+		const file = e.target.files[0]
+		if(!file) return
+		e.target.value = ""
+
+		const body = await loadFile(file)
+		const headers = { 'Content-Type': file.type };
+
+		const json = await fetch('/api/chat/upload', { method: 'POST', headers, body } )
+		const resp = await json.json()
+		
+		if(resp.error) return
+	
+		onChange({avatar: resp.src})
+	}
+
+
 	return (
-		<div className={cn("h flex", styles.background)}>
+		<div className={cn("h flex", styles.background)} id="chat">
+			<input onChange={onFileChange} ref={fileRef} type="file" accept="image/*" style={{display: "none"}}/>
 			<h2>Новогодний чат</h2>
 			<div className={cn('container', styles.chatContainer)}>
-				<button className={styles.avatar}>
-
-				</button>
-				<div className={styles.chat}>
+				<button 
+					className={cn(styles.avatar, values.avatar && styles.active)} 
+					onClick={() => fileRef.current.click()} 
+					style={values.avatar?{backgroundImage: `url(${values.avatar})`}: {}}
+				></button>
+				<div className={styles.chat} ref={chatRef}>
 					{messages.map((item, index) => <Message key={index} {...item}/>)}
 				</div>
 			</div>
-			<div className={cn('container', styles.inputsContainer)}>
+			<form className={cn('container', styles.inputsContainer)} onSubmit={onSubmit}>
 				<div className={styles.fields}>
 					{Object.keys(fields).map(key => (
 						<Input {...fields[key]} name={key} key={key} subName="chat" onChange={onChange} value={values[key]}/>
@@ -58,16 +90,16 @@ export default function ChatBlock(){
 					area={true}
 				/>
 				<button className={styles.send}><img src="/images/send.svg" alt="Отправить сообщение"/></button>
-			</div>
+			</form>
 		</div>
 	)
 }
 
-function Message ({name, surname, unit, text}){
+function Message ({name, surname, unit, text, avatar}){
 
 	return (
 		<div className={styles.message}>
-			<div className={styles.messageAvatar}></div>
+			<div className={styles.messageAvatar} style={avatar?{backgroundImage: `url(${avatar})`}:{}}></div>
 			<div className={styles.textContainer}>
 				<div className={styles.header}>
 					<div className={styles.name}>{name} {surname}</div>

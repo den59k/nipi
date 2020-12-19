@@ -1,24 +1,24 @@
 import cn from 'classnames'
-
+import onClick from 'libs/smooth-href'
 import styles from './styles/head.module.sass'
 
 import Link from 'next/link'
 
 const stars = [
-	{ title: "АУП и ВП", to: "/#aup", style: { top: '-200px', left: '0px' } },
-	{ title: "РАЗРАБОТКА", to: "/#aup", style: { top: '-350px', left: '100px' } },
-	{ title: "ПИР", to: "/#aup", style: { top: '-100px', left: '160px' } },
-	{ title: "БУРЕНИЕ", to: "/#aup", style: { top: '-300px', right: '120px' } },
-	{ title: "ГЕОЛОГИЯ", to: "/#aup", style: { top: '-150px', right: '0px' } },
-	{ title: "ДОБЫЧА", to: "/#aup", style: { top: '-80px', right: '180px' } }
+	{ title: "АУП и ВП", to: "/#part-6", style: { top: '-200px', left: '0px' } },
+	{ title: "РАЗРАБОТКА", to: "/#part-1", style: { top: '-350px', left: '100px' } },
+	{ title: "ПИР", to: "/#part-4", style: { top: '-100px', left: '160px' } },
+	{ title: "БУРЕНИЕ", to: "/#part-2", style: { top: '-300px', right: '120px' } },
+	{ title: "ГЕОЛОГИЯ", to: "/#part-3", style: { top: '-150px', right: '0px' } },
+	{ title: "ДОБЫЧА", to: "/#part-5", style: { top: '-80px', right: '180px' } }
 ]
 
 const menuItems = [
-	{ title: "Новогодняя фотогалерея", to: "/#aup" },
-	{ title: "Новогодняя игротека", to: "/#aup" },
-	{ title: "Новогодняя поздравления", to: "/#aup" },
-	{ title: "Подарки\nот деда мороза", to: "/#aup" },
-	{ title: "Новогодний\nчат", to: "/#aup" },
+	{ title: "Новогодняя фотогалерея", to: "/#photo-gallery" },
+	{ title: "Новогодняя игротека", to: "/#games" },
+	{ title: "Новогодняя поздравления", to: "/#congrulations" },
+	{ title: "Подарки\nот деда мороза", to: "/#presents" },
+	{ title: "Новогодний\nчат", to: "/#chat" },
 ]
 
 export default function HeadBlock (){
@@ -39,11 +39,7 @@ export default function HeadBlock (){
 			</div>
 
 			<div className={cn(styles.buttons, "container")}>
-				{menuItems.map((item, index) => (
-					<Link href={item.to} key={index}>
-						<a>{item.title}</a>
-					</Link>
-				))}
+				{menuItems.map((item, index) => <a href={item.to} onClick={onClick} key={index}>{item.title}</a>)}
 			</div>
 
 			<div className={styles.tableTop}><div>Голосование начнется<br/>в 10:00</div></div>
@@ -54,9 +50,7 @@ export default function HeadBlock (){
 function Star ({style, title, to}){
 	return (
 		<div className={styles.star} style={style}>
-			<Link href={to}>
-				<a>{title}</a>
-			</Link>
+			<a href={to} onClick={onClick}>{title}</a>
 		</div>
 	)
 }
