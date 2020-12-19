@@ -8,13 +8,19 @@
     "start": "next start"
   },
   "dependencies": {
+    "ajv": "^6.12.6",
     "classnames": "^2.2.6",
+    "fluent-ffmpeg": "^2.1.2",
+    "lodash": "^4.17.20",
+    "mime": "^2.4.6",
     "mongodb": "^3.6.3",
+    "nanoid": "^3.1.20",
     "next": "10.0.3",
+    "raw-body": "^2.4.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-icons": "^4.1.0",
-    "sass": "^1.29.0",
-    "swr": "^0.3.10"
+    "sass": "^1.30.0",
+    "sharp": "^0.26.3",
+    "swr": "^0.3.9"
   }
 }
