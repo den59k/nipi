@@ -47,7 +47,7 @@ export default function Catcher({className, onWin, active}){
 	const [ presents, setPresents ] = useState([]);
 	const [ gameState, setGameState ] = useState({started: false, scores: 0, falls: 0, interval: null, timeout: null});
 
-	const maxScores = 5
+	const maxScores = 50
 
 	const posRef = useRef();
 	posRef.current = pos;
