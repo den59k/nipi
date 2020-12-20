@@ -30,7 +30,7 @@ export default function GamesBlock(){
 
 	//Когда мы открываем шар на елке - у нас убирается одна звезда
 	const onOpen = () => {
-		setTimeout(() => openGameModal('', text2), 3000)
+		setTimeout(() => openGameModal('', text2), 5000)
 		setStars(stars => stars-1)
 	}
 
