@@ -5,12 +5,12 @@ import styles from './styles/head.module.sass'
 import Link from 'next/link'
 
 const stars = [
-	{ title: "АУП и ВП", to: "/#part-6", style: { top: '-200px', left: '0px' } },
-	{ title: "РАЗРАБОТКА", to: "/#part-1", style: { top: '-350px', left: '100px' } },
-	{ title: "ПИР", to: "/#part-4", style: { top: '-100px', left: '160px' } },
-	{ title: "БУРЕНИЕ", to: "/#part-2", style: { top: '-300px', right: '120px' } },
-	{ title: "ГЕОЛОГИЯ", to: "/#part-3", style: { top: '-150px', right: '0px' } },
-	{ title: "ДОБЫЧА", to: "/#part-5", style: { top: '-80px', right: '180px' } }
+	{ title: "АУП и ВП", to: "/#part-6", className: styles.star1 },
+	{ title: "РАЗРАБОТКА", to: "/#part-1", className: styles.star2 },
+	{ title: "ПИР", to: "/#part-4", className: styles.star3 },
+	{ title: "БУРЕНИЕ", to: "/#part-2", className: styles.star4 },
+	{ title: "ГЕОЛОГИЯ", to: "/#part-3", className: styles.star5 },
+	{ title: "ДОБЫЧА", to: "/#part-5", className: styles.star6 }
 ]
 
 const menuItems = [
@@ -24,7 +24,7 @@ const menuItems = [
 export default function HeadBlock (){
 
 	return (
-		<header className="h" style={{backgroundImage: `url(/images/background-head.jpg)`}}>
+		<header className="h" style={{backgroundImage: `url(/images/background-head.jpg)`}} id="head">
 			<div className="container">
 				<div className={cn(styles.top)}>
 					<img className={styles.imageMap} src="/images/map.png" alt="Логотип лукойла"/>
@@ -47,9 +47,9 @@ export default function HeadBlock (){
 	)
 }
 
-function Star ({style, title, to}){
+function Star ({style, title, to, className}){
 	return (
-		<div className={styles.star} style={style}>
+		<div className={cn(styles.star, className)} style={style}>
 			<a href={to} onClick={onClick}>{title}</a>
 		</div>
 	)

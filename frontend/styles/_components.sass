@@ -15,3 +15,20 @@
 
 	@media(max-width: 600px)
 		padding: 3px 25px
+
+.up-button
+	position: fixed
+	width: 2.5em
+	height: 2.5em
+	background: none
+	border: none
+	background-image: url('/images/arrow.svg')
+	background-size: contain
+	background-position: center
+	bottom: 45%
+	right: 0.5em
+	transition: 0.3s
+
+	&.hide
+		opacity: 0
+		transform: scale(0.5)

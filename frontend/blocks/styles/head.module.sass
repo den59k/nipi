@@ -13,10 +13,20 @@
 		margin-right: 50px
 		flex: 0 0 auto
 
+		@media(max-width: 900px)
+			max-height: 18vmin
+
 	.imageLogo
 		max-height: 90px
 		margin-top: 15px
 		flex: 0 0 auto
+
+		@media(max-width: 900px)
+			max-height: 10vmin
+
+	@media(max-width: 600px)
+		.imageMap, .imageLogo
+			display: none
 
 	.title
 		text-align: center
@@ -32,12 +42,28 @@
 		div
 			font-size: 1.8em
 
+		@media(max-width: 700px)
+			font-size: 0.8em
+
 .hitParad
 	position: absolute
 	width: 340px
 	left: 50%
 	margin-left: -340px * 0.5
 	top: 112px
+	
+
+	@media(max-width: 1200px)
+		width: 260px
+		margin-left: -260px*0.5
+		top: 90px
+
+	@media(max-width: 700px)
+		width: 35vw
+		margin-left: -35vw*0.5
+
+	@media(max-width: 500px)
+		top: 80px
 
 .buttons
 	position: absolute
@@ -47,6 +73,7 @@
 	display: flex
 	justify-content: space-between
 	z-index: 2
+
 	a
 		color: #990000
 		background: linear-gradient(180deg, white 59.37%, #C7C5C6 100%)
@@ -63,10 +90,26 @@
 		box-shadow: 0 0 0 1px #700404
 		border-radius: 3em
 
+	
+	@media(max-width: 750px)
+		bottom: auto
+		margin-top: 320px
+		flex-direction: column
+		align-items: center
+		position: static
+
+		@media(max-width: 460px)
+			margin-top: 300px
+
+		a
+			margin-bottom: 6px
+			width: 14em
+			padding: 2px 20px
+
 .star
 	background-image: url('/images/star-up.png')
 	background-size: cover
-	background-position: center
+	background-position: center bottom
 	position: absolute
 	text-align: center
 	width: 235px * 0.8
@@ -82,11 +125,98 @@
 		pointer-events: all
 		text-decoration: underline
 
+	@media(max-width: 1000px)
+		width: 235px * 0.65
+		height: 768px * 0.65
+		padding-top: 627px * 0.645
+		margin-top: 30px
+
+	@media(max-width: 600px)
+		width: 235px * 0.4
+		height: 968px * 0.4
+		padding-top: 823px * 0.4
+		margin-top: 25px
+
+		font-size: 0.9em
+
+.star1
+	top: -200px
+	left: 0px
+
+.star2
+	top: -350px
+	left: 100px
+
+.star3 
+	top: -100px
+	left: 160px
+
+.star4
+	top: -300px
+	right: 120px
+
+.star5
+	top: -150px
+	right: 0px
+
+.star6
+	top: -80px
+	right: 180px	
+
+@media(max-width: 1000px)
+	.star2
+		left: 8vw
+		top: -300px
+	.star3
+		left: 10vw
+	.star4
+		right: 6vw
+		top: -260px
+	.star6
+		right: 10vw
+
+@media(max-width: 600px)
+	.star1
+		top: -180px
+	.star2
+		left: 4vw
+		top: -280px
+	.star3
+		left: 5vw
+		top: -80px
+	.star4
+		right: 3vw
+		top: -250px
+	.star6
+		right: 3vw
+		top: -50px
+
+	@media(max-width: 400px)
+		.star1, .star2, .star3
+			margin-left: -10px
+
+		.star4, .star5, .star6
+			margin-right: -10px
+
+	@media(max-width: 350px)
+		.star1, .star3, .star5, .star6
+			margin-top: 90px
+
+		.star1
+			top: -150px
+
+		.star5
+			top: -150px
+
+		.star6
+			top: -70px
+
+
 .tableTop
 
 	background-image: url(/images/table-top.png)
 	background-size: cover
-	background-position: center
+	background-position: center bottom
 	position: absolute
 	left: 50%
 	top: 0px
@@ -96,6 +226,35 @@
 	height: 809px*0.75
 
 	padding-top: 630px *0.75
+
+	@media(max-width: 1200px)
+		margin-left: -718px*0.5*0.6
+		width: 718px*0.6
+		height: 809px*0.6
+		padding-top: 630px *0.6
+
+	@media(max-width: 820px)
+		margin-left: -718px*0.5*0.4
+		width: 718px*0.4
+		height: 1009px*0.4
+		padding-top: 840px *0.4
+		top: -20px
+
+	@media(max-width: 500px)
+		margin-left: -50vw*0.5 * 1.2
+		width: 50vw * 1.2
+		height:70vw * 1.2
+		padding-top: 58vw * 1.2
+		top: 0
+		font-size: 0.95em
+
+	@media(max-width: 350px)
+		width: 200px
+		margin-left: -100px
+		height: 260px
+		padding-top: 213px
+		font-size: 0.85em
+		top: 15px
 
 	div
 		transform: rotate(-7deg)

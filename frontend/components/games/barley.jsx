@@ -189,6 +189,14 @@ export default function Barley ({src, className, onWin}){
 
 	}
 
+	const clear = () => {
+		setStarted(false)
+		setTimeout(() => {
+			setPoses(indexes)
+			setPlayed(false)
+		}, 100)
+	}
+
 	return (
 		<div className={cn(className, styles.mainContainer)}>
 			{/* <div className={styles.preview} style={{backgroundImage: `url(${image})`}}></div> */}
@@ -214,6 +222,11 @@ export default function Barley ({src, className, onWin}){
 					styles.playButton,
 					played && styles.hide
 				)} onClick={shuffle}></button>
+
+				<button style={{backgroundImage: 'url(/images/games/again.png)', marginRight: "20px"}} className={cn(
+					styles.playButton,
+					!started  && styles.hide
+				)} onClick={clear}></button>
 				
 				<div className={cn(!started && styles.hide)}>Ходы: {steps}</div> 
 			</div>
