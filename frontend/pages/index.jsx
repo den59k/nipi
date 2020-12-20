@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import useSWR from 'swr'
 import { GET } from 'libs/fetch'
 
@@ -16,6 +17,18 @@ export default function MainPage({congrulations}) {
 
 	const { data } = useSWR('/api', GET, { refreshInterval: 5000 })
   const _data = data || { photos: [],  messages: [], indexes: [] }
+	
+	useEffect(() => {
+		const resize = () => {
+			if(window.innerHeight < 400 || window.innerWidth < 400) return
+			const vh = window.innerHeight * 0.01;
+			document.documentElement.style.setProperty('--vh', `${vh}px`);
+		}
+		resize()
+		window.addEventListener("resize", resize)
+
+		return () => window.removeEventListener("resize", resize)
+	}, [])
 
 	return (
 		<Layout>

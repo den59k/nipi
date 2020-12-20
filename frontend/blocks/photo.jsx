@@ -9,7 +9,7 @@ import { openMakePhotoModal, closeModal } from 'components/modal-window'
 
 const resizing = [
 	{ min: 1200, value: 12 },
-	{ min: 900, value: 8 },
+	{ min: 450, value: 8 },
 	{ min: 0, value: 4 }
 ]
 

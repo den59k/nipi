@@ -156,6 +156,10 @@ export default function Catcher({className, onWin, active}){
 		<div className={cn(styles.container, className)}>
 			<div className={styles.game}>
 				<h3 className={styles.title}>Ловец подарков</h3>
+				<button className={styles.leftTopButton} onClick={() => setPos('left-up')}></button>
+				<button className={styles.rightTopButton} onClick={() => setPos('right-up')}></button>
+				<button className={styles.leftBottomButton} onClick={() => setPos('left')}></button>
+				<button className={styles.rightBottomButton} onClick={() => setPos('right')}></button>
 				<div className={cn(styles.santa, styles[pos])}></div>
 				{presents.map(present => (
 					<div key={present.id} className={cn(styles.present, present.catch && styles.catch, present.fall && styles.fall)} style={getStyle(present)}>

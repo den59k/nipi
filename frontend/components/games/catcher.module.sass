@@ -6,6 +6,9 @@
 	width: 900px
 	margin: 0 auto
 
+	@media(max-width: 940px)
+		width: 100%
+
 .game
 	background-image: url('/catcher/background.png')
 	width: 800px
@@ -13,12 +16,28 @@
 	position: relative
 	overflow: hidden
 
+	@media(max-width: 800px)
+		transform: scale(0.8)
+	
+	@media(max-width: 680px)
+		transform: scale(0.6)
+
+	@media(max-width: 460px)
+		transform: scale(0.5)
+
+	@media(max-width: 370px)
+		transform: scale(0.4)
+
+	@media(max-width: 280px)
+		transform: scale(0.3)
+
 .title
 	position: absolute
 	top: 0
 	left: 0
 	right: 0
 	height: 20px
+	font-size: 20px
 
 .santa
 	background-image: url('/catcher/ded-left')
@@ -91,3 +110,37 @@
 
 .hide
 	display: none 
+
+.leftTopButton, .rightTopButton, .leftBottomButton, .rightBottomButton
+	background: none
+	padding: 0
+	position: absolute
+	z-index: 5
+	border: none
+	outline: none
+
+$delta: 220px
+
+.leftTopButton, .rightTopButton
+	top: 0
+	width: 50%
+	height: $delta
+
+.leftTopButton
+	left: 0
+
+.rightTopButton
+	right: 0
+
+.leftBottomButton, .rightBottomButton
+	bottom: 0
+	top: $delta
+	width: 50%
+
+.leftBottomButton
+	left: 0
+
+.rightBottomButton
+	right: 0
+
+

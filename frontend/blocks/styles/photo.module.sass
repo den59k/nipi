@@ -11,6 +11,13 @@
 .photosContainer
 	display: flex
 	justify-content: space-between
+
+	@media(max-width: 1200px)
+		justify-content: center
+	
+	@media(max-width: 450px)
+		flex-direction: column
+		align-items: center
 	
 $width: 110px
 
@@ -19,6 +26,8 @@ $width: 110px
 	flex-wrap: wrap
 	width: $width*3 + 5px*6
 
+	@media(max-width: 1200px)
+		width: $width * 2 + 5px * 4
 
 .photo
 	width: $width
@@ -39,3 +48,34 @@ $width: 110px
 .button
 	align-self: center
 	margin-top: 15px
+
+$widthMobile: 11vw
+@media(max-width: 970px)
+	.bigPhoto
+		width: $widthMobile*4 + 0.5vw*6
+		height: $widthMobile*4 + 0.5vw*6
+		margin: 0.5vw
+
+	.photos
+		width: $widthMobile * 2 + 0.5vw * 4
+
+	.photo
+		margin: 0.5vw
+		width: $widthMobile
+		height: $widthMobile
+
+@media(max-width: 450px)
+	.photos
+		width: $widthMobile * 4  + 0.5vw * 8
+
+@media(max-width: 370px)
+	.bigPhoto
+		width: $widthMobile*4 * 1.8 + 0.5vw*6
+		height: $widthMobile*4 * 1.8 + 0.5vw*6
+
+	.photo
+		width: $widthMobile * 1.8
+		height: $widthMobile * 1.8
+
+	.photos
+		width: $widthMobile * 4 * 1.8 + 0.5vw * 8

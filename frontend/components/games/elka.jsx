@@ -66,8 +66,9 @@ export default function Elka ({className, stars, onOpen, active}) {
 	return (
 		<div className={cn(className, styles.container)}>
 			<h3>Елка пожеланий</h3>
+			<div className={styles.labelMobile}>{getLabel()}</div>
 			<div className={styles.flex}>
-				
+
 				<div className={cn(styles.shar, !wish && styles.hide)}>
 					<div className={styles.text}>{wish}</div>
 				</div>

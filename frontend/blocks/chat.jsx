@@ -66,7 +66,7 @@ export default function ChatBlock({messages}){
 			<h2>Новогодний чат</h2>
 			<div className={cn('container', styles.chatContainer)}>
 				<button 
-					className={cn(styles.avatar, values.avatar && styles.active)} 
+					className={cn(styles.avatar, styles.desktop, values.avatar && styles.active)} 
 					onClick={() => fileRef.current.click()} 
 					style={values.avatar?{backgroundImage: `url(${values.avatar})`}: {}}
 				></button>
@@ -90,6 +90,11 @@ export default function ChatBlock({messages}){
 					area={true}
 				/>
 				<button className={styles.send}><img src="/images/send.svg" alt="Отправить сообщение"/></button>
+				<button 
+					className={cn(styles.avatar, styles.mobile, values.avatar && styles.active)} 
+					onClick={() => fileRef.current.click()} 
+					style={values.avatar?{backgroundImage: `url(${values.avatar})`}: {}}
+				></button>
 			</form>
 		</div>
 	)
