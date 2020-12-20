@@ -9,6 +9,7 @@ import styles from './styles/participant.module.sass'
 import Video from 'components/video'
 import videoStyles from 'components/video.module.sass'
 import { openCongrulationModal } from 'components/modal-window'
+import Stars from 'components/stars'
 
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 
@@ -23,9 +24,16 @@ function getPreview(str){
 	return str.slice(0, pos)
 }
 
+function getClassName (index){
+	if(index % 2 === 0) return styles.snowBackground
+	if(index % 4 === 1) return styles.background
+	return styles.background4
+}
+
 export default function ParticipantBlock ({ headerClassName, title, wishes, youtube_id, preview, index, likes, liked}){
 
 	const [ currentWish, setCurrentWish ] = useState(0)
+	const [ lastWish, setLastWish ] = useState(null)
 
 	const wish = wishes && wishes[currentWish]
 
@@ -34,6 +42,7 @@ export default function ParticipantBlock ({ headerClassName, title, wishes, yout
 		if(newCurrentWish < 0) newCurrentWish = wishes.length - 1
 		if(newCurrentWish >= wishes.length) newCurrentWish = 0
 
+		setLastWish(<Wish key={currentWish} wish={wish} className={inc < 0? styles.hideLeft : styles.hideRight}/>)
 		setCurrentWish(newCurrentWish)
 	}
 
@@ -44,25 +53,26 @@ export default function ParticipantBlock ({ headerClassName, title, wishes, yout
 	}
 
 	return (
-		<div className={cn("h flex")} id={"part-"+(index+1)}>
+		<div className={cn("h flex", getClassName(index))} id={"part-"+(index+1)}>
 			<h2 className={headerClassName}>Направление «{title}»</h2>
+			<Stars/>
 			<div className={cn("content container", styles.container)}>
 				<img className={styles.hit} src="/images/hit-parad.png" alt="Хит парад"/>
 				<div>
 					<div className={styles.textBlock}>
 						<div className={styles.title}>Поздравления от руководителей направления «{title}»</div>
-						{wish && (
-							<div className={styles.wish}>
-								<div className={styles.text}>«{getPreview(wish.wish)}»</div>
-								<button className={styles.readMore} onClick={() => openCongrulationModal(wish)}>Читать далее...</button>
-								<div className={styles.leader}>{wish.name}</div>
-								<div className={styles.role}>{wish.role}</div>
+							{wishes && (<div className={styles.wish}>
+								{wishes.map((item, index) => (
+									<Wish key={index} className={cn(
+										index < currentWish && styles.hideLeft, 
+										index > currentWish && styles.hideRight
+									)} wish={wish}/>
+								))}
 								{wishes.length > 1 && (<div className={styles.buttons}>
-									<button onClick={() => slide(-1)} className={styles.left}></button>
-									<button onClick={() => slide(1)}></button>
+									<button onClick={() => slide(-1)} className={cn(currentWish === 0 && styles.hide, styles.left)}></button>
+									<button onClick={() => slide(1)} className={cn(currentWish === wishes.length-1 && styles.hide)}></button>
 								</div>)}
-							</div>
-						)}
+							</div>)}
 					</div>
 					<div>
 						<Video id={youtube_id} className={styles.video} preview={preview}/>
@@ -76,6 +86,18 @@ export default function ParticipantBlock ({ headerClassName, title, wishes, yout
 					</div>
 				</div>
 			</div>
+		</div>
+	)
+}
+
+
+function Wish ({wish, className}){
+	return (
+		<div className={cn(styles.wishContainer, className)}>
+			<div className={cn(styles.text)}>«{getPreview(wish.wish)}»</div>
+			<button className={styles.readMore} onClick={() => openCongrulationModal(wish)}>Читать далее...</button>
+			<div className={styles.leader}>{wish.name}</div>
+			<div className={styles.role}>{wish.role}</div>
 		</div>
 	)
 }

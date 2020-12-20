@@ -12,7 +12,7 @@ export default function Layout ({children}){
 		<ModalWrapper>
 			<Head>
 				<title>Энергия талантов ПермНИПИнефть</title>
-				<link rel="icon" href="/favicon.ico" />
+				<link rel="icon" href="/favicon.png" />
 			</Head>
 			{children}
 			<UpButton/>

@@ -5,6 +5,7 @@
 	top: -14px
 	left: -80px
 	width: 350px
+	z-index: 2
 
 	@media(max-width: 1400px)
 		left: 0px
@@ -16,6 +17,33 @@
 	
 	@media(max-width: 400px)
 		width: 40vmin
+
+.background
+	background-image: url('/images/background-3.jpg')
+	background-size: 40%
+	background-position: left bottom
+	background-repeat: no-repeat
+
+.snowBackground
+	background-image: url('/images/snow-background.jpg')
+
+.background4
+	background-image: url('/images/background-4.jpg')
+	background-position: center bottom
+
+.wishContainer
+	transition: 0.6s
+	&.hideLeft, &.hideRight
+		position: absolute
+		top: 0
+		opacity: 0
+		pointer-events: none
+
+	&.hideLeft
+		transform: translateX(-230px)
+
+	&.hideRight 
+		transform: translateX(230px)
 
 .container
 	display: flex
@@ -33,6 +61,10 @@
 .textBlock
 	width: 450px
 	text-align: center
+	position: relative
+
+	&>div
+		position: relative
 
 	@media(max-width: 500px)
 		width: 90vw
@@ -124,10 +156,13 @@
 		transition: opacity 0.2s
 		@media(max-width: 500px)
 			margin: 0 1em
-	
 
 		&:hover
 			opacity: 1
 
 		&.left
 			transform: scale(-1, 1)
+		
+		&.hide
+			opacity: 0
+			pointer-events: none
