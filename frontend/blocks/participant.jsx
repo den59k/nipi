@@ -31,7 +31,7 @@ function getClassName (index){
 	return styles.background4
 }
 
-export default function ParticipantBlock ({ headerClassName, title, wishes, youtube_id, preview, index, likes, liked, timing}){
+export default function ParticipantBlock ({ wistia, headerClassName, title, wishes, youtube_id, preview, index, likes, liked, timing}){
 	
 	const activeStart = useActive(timing.startVote)
 	const activeFinish = useActive(timing.finishVote)
@@ -63,6 +63,7 @@ export default function ParticipantBlock ({ headerClassName, title, wishes, yout
 		return  'Голосование до '+ getTime(timing.finishVote)
 	}
 
+
 	return (
 		<div className={cn("h flex", getClassName(index))} id={"part-"+(index+1)}>
 			<h2 className={headerClassName}>Направление «{title}»</h2>
@@ -86,7 +87,7 @@ export default function ParticipantBlock ({ headerClassName, title, wishes, yout
 							</div>)}
 					</div>
 					<div>
-						<Video id={youtube_id} className={styles.video} preview={preview}/>
+						<Video id={wistia || youtube_id} type={wistia?'wistia': 'youtube'} className={styles.video} preview={preview}/>
 						<div className={styles.likePanel}>
 							<button className={cn(styles.like, !liked && styles.likeOff)} onClick={onLike}>
 								{liked?<img src="/images/like.svg" alt="Лайк"/>: <img src="/images/like-off.svg" alt="Лайк"/>}

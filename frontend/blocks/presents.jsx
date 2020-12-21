@@ -17,7 +17,7 @@ export default function PresentsBlock ({timing}){
 			<h2>Подарки от Деда Мороза</h2>
 			<Stars/>
 			<div className="content flex-center">
-				<Video className={styles.bigVideo} id={'c5nhWy7Zoxg'} time={timing.presents}>
+				<Video className={styles.bigVideo} id={'jQ_mQ9I0PjQ'} time={timing.presents}>
 					{!active && <div className={styles.videoLabel}>Награждение начнется в {getTime(timing.presents)}</div>}
 				</Video>
 			</div>
