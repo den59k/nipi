@@ -47,7 +47,7 @@ export default function Catcher({className, onWin, active}){
 	const [ presents, setPresents ] = useState([]);
 	const [ gameState, setGameState ] = useState({started: false, scores: 0, falls: 0, interval: null, timeout: null});
 
-	const maxScores = 50
+	const maxScores = 30
 
 	const posRef = useRef();
 	posRef.current = pos;
@@ -61,7 +61,7 @@ export default function Catcher({className, onWin, active}){
 
 	useEffect(() => {
 		console.log(falls)
-		if(falls >= 3){
+		if(falls >= 3 || scores === maxScores){
 			clearTimeout(gameState.timeout)
 			clearInterval(gameState.interval)
 			setTimeout(() => {
@@ -141,7 +141,7 @@ export default function Catcher({className, onWin, active}){
 
 			setGameState(state => {
 				if(!state.started) return state;
-				const time = (Math.floor(Math.random()*100)+100)*40/Math.max(Math.sqrt(state.scores), 3);
+				const time = (Math.floor(Math.random()*100)+100)*30/Math.max(Math.sqrt(state.scores), 2);
 
 				const timeout = setTimeout(spawn, time);
 				return {...state, timeout};
