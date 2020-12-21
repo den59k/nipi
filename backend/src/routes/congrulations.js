@@ -34,7 +34,6 @@ module.exports = function (app, db){
 	})
 
 	app.put('/congrulations/:_id', validate(postSchema), async(req, res) => {
-		console.log(req.body)
 		const resp = await updateCongrulation(collection, req.params._id, filterBody(req.body, properties))
 		res.json(resp)
 	})
