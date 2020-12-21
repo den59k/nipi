@@ -4,6 +4,7 @@ import { openGameModal } from 'components/modal-window'
 
 import styles from './styles/games.module.sass'
 
+import { Parallax } from 'components/parallax'
 import Catcher from 'components/games/catcher'
 import Barley from 'components/games/barley'
 import Elka from 'components/games/elka'
@@ -49,6 +50,7 @@ export default function GamesBlock(){
 
 	return (
 		<div className={cn("h flex", styles.background)} id="games">
+			<Parallax src="/images/background-games.jpg" k={-0.5} className="cover"/>
 			<h2>Новогодняя игротека</h2>
 			<div className={styles.container}>
 				<button className={cn(styles.leftButton, activeGame === 0 && styles.hide)} onClick={() => slide(-1)}>

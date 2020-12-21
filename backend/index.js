@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const chalk = require('chalk')
 const { MongoClient } = require('mongodb')
@@ -7,7 +8,7 @@ const { base } = require('./src/libs/path')
 
 const dbName = 'nipi'
 const app = express()
-const port = 3101
+const port = process.env.PORT || 3101
 
 async function init (){
   const client = await MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true })

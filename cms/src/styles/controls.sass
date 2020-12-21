@@ -32,7 +32,7 @@ button
 		width: 95vw
 
 //Это общий класс для всех контролов
-.input, .textarea, .checkbox
+.input, .textarea, .checkbox, .time-picker
 	label
 		width: 13em
 		display: inline-block
@@ -232,6 +232,25 @@ button
 			width: 100%
 			height: 100%
 			color: white
+
+
+.time-picker
+	display: flex
+	align-items: center
+
+.picker
+	display: inline-flex
+	flex-direction: column
+	align-items: stretch
+
+	div
+		font-size: 16px
+		text-align: center
+		min-width: 32px
+	button 
+
+		svg
+			font-size: 13px
 
 //А здесь просто стили для всех видов кнопок
 .button, .button-stroked, .button-filled

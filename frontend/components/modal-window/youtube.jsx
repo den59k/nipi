@@ -19,6 +19,7 @@ function YoutubeModal ({id}){
 	)
 }
 
-export function openYoutubeModal (id){
+export function openYoutubeModal (id, time){
+	if(time && Date.now() < time) return
 	modal.open(<YoutubeModal id={id}/>)
 }

@@ -16,8 +16,8 @@ import participants from 'libs/participants'
 export default function MainPage({congrulations}) {
 
 	const { data } = useSWR('/api', GET, { refreshInterval: 5000 })
-  const _data = data || { photos: [],  messages: [], indexes: [] }
-	
+  const _data = data || { photos: [],  messages: [], indexes: [], timing: {} }
+
 	useEffect(() => {
 		const resize = () => {
 			if(window.innerHeight < 400 || window.innerWidth < 400) return
@@ -32,7 +32,7 @@ export default function MainPage({congrulations}) {
 
 	return (
 		<Layout>
-			<HeadBlock/>
+			<HeadBlock timing={_data.timing}/>
 			<CongrulationsBlock/>
 			{congrulations.map((item, index) => <ParticipantBlock 
 				{...item} 
@@ -42,8 +42,9 @@ export default function MainPage({congrulations}) {
 				index={index}
 				likes={_data.likes && _data.likes[index]? _data.likes[index].likes : 0}
 				liked={_data.indexes.find(item => item.index===index)}
+				timing={_data.timing}
 			/>)}
-			<PresentsBlock/>
+			<PresentsBlock timing={_data.timing}/>
 			<ChatBlock messages={_data.messages}/>
 			<PhotoBlock photos={_data.photos}/>
 			<GamesBlock/>

@@ -2,6 +2,7 @@ import cn from 'classnames'
 import styles from './styles/congrulations.module.sass'
 
 import Video from 'components/video'
+import { Parallax } from 'components/parallax'
 
 const videos = [
 	{ 
@@ -19,7 +20,8 @@ const videos = [
 export default function Congrulations(){
 
 	return (
-		<div className="h flex" id="congrulations" style={{backgroundImage: `url(/images/background-0.jpg)`}}>
+		<div className="h flex" id="congrulations">
+			<Parallax src="/images/background-0.jpg" k={-0.4} className="cover"/>
 			<h2>Новогодние поздравления</h2>
 			<div className={cn("content container", styles.container)}>
 				<div>

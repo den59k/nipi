@@ -1,6 +1,9 @@
-module.exports = function(app, db) {
-    app.get('/', (req, res) => {
+const offset = 60 * 1000
 
-        res.json({str: 'Hello world'})
+module.exports = function(app, db) {
+    app.get('/', async (req, res) => {
+        const online = await db.collection('online').find({ time: { $gt: Date.now() - offset } }, {projection: {_id: 1}}).count()
+        
+        res.json({online})
     })
 }

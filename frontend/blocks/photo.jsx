@@ -5,6 +5,7 @@ import { mutate } from 'swr'
 
 import styles from './styles/photo.module.sass'
 
+import { Parallax } from 'components/parallax'
 import { openMakePhotoModal, closeModal } from 'components/modal-window'
 
 const resizing = [
@@ -51,6 +52,7 @@ export default function PhotoGalleryBlock ({ photos }){
 
 	return (
 		<div className={cn("h flex", styles.background)} id="photo-gallery">
+			<Parallax src="/images/background-gallery.jpg" k={-0.5} className="cover"/>
 			<h2>Новогодняя фотогалерея</h2>
 			<div className={cn("content container", styles.container)}>
 				<div className={styles.photosContainer}>

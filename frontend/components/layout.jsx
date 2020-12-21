@@ -4,19 +4,22 @@ import cn from 'classnames'
 
 import Head from 'next/head'
 import { ModalWrapper } from 'components/modal-window'
+import { ParallaxProvider } from 'components/parallax'
 
 export default function Layout ({children}){
 
 
 	return (
-		<ModalWrapper>
-			<Head>
-				<title>Энергия талантов ПермНИПИнефть</title>
-				<link rel="icon" href="/favicon.png" />
-			</Head>
-			{children}
-			<UpButton/>
-		</ModalWrapper>
+		<ParallaxProvider>
+			<ModalWrapper>
+				<Head>
+					<title>Энергия талантов ПермНИПИнефть</title>
+					<link rel="icon" href="/favicon.png" />
+				</Head>
+				{children}
+				<UpButton/>
+			</ModalWrapper>
+		</ParallaxProvider>
 	)
 }
 

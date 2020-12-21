@@ -6,6 +6,8 @@ import { mutate } from 'swr'
 
 import styles from './styles/chat.module.sass'
 
+import { Parallax } from 'components/parallax'
+
 const fields = {
 	name: { label: "Имя", className: styles.double },
 	surname: { label: "Фамилия", className: styles.double },
@@ -62,6 +64,7 @@ export default function ChatBlock({messages}){
 
 	return (
 		<div className={cn("h flex", styles.background)} id="chat">
+			<Parallax src="/images/background-chat.jpg" style={{backgroundPosition: "right center"}} k={-0.35} className="cover"/>
 			<input onChange={onFileChange} ref={fileRef} type="file" accept="image/*" style={{display: "none"}}/>
 			<h2>Новогодний чат</h2>
 			<div className={cn('container', styles.chatContainer)}>

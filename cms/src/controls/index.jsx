@@ -7,7 +7,7 @@ import Input from './input'
 import Segment from './segment'
 import TextArea from './textarea'
 import CheckBox from './checkbox'
-
+import TimePicker from './time-picker'
 
 function getControl(name, control, form){
 	if(control.type === "text" || control.type === "number")
@@ -49,4 +49,4 @@ function useForm (defaultValues){
 }
 
 
-export { Input, Segment, CheckBox, TextArea, useForm, getControl };
+export { Input, Segment, CheckBox, TextArea, TimePicker, useForm, getControl };

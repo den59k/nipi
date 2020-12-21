@@ -1,8 +1,10 @@
 import cn from 'classnames'
 import onClick from 'libs/smooth-href'
+import { getTime } from 'libs/rus'
 import styles from './styles/head.module.sass'
 
-import Link from 'next/link'
+import { Parallax } from 'components/parallax'
+import { openYoutubeModal } from 'components/modal-window/youtube'
 
 const stars = [
 	{ title: "АУП и ВП", to: "/#part-6", className: styles.star1 },
@@ -16,15 +18,18 @@ const stars = [
 const menuItems = [
 	{ title: "Новогодняя фотогалерея", to: "/#photo-gallery" },
 	{ title: "Новогодняя игротека", to: "/#games" },
-	{ title: "Новогодняя поздравления", to: "/#congrulations" },
+	{ title: "Новогодние поздравления", to: "/#congrulations" },
 	{ title: "Подарки\nот деда мороза", to: "/#presents" },
 	{ title: "Новогодний\nчат", to: "/#chat" },
 ]
 
-export default function HeadBlock (){
+const video = { id: "uEaouwm3ebA" }
+
+export default function HeadBlock ({timing}){
 
 	return (
-		<header className="h" style={{backgroundImage: `url(/images/background-head.jpg)`}} id="head">
+		<header className="h"  id="head">
+			<Parallax src="/images/background-head.jpg" k={-0.5} className="cover"/>
 			<div className="container">
 				<div className={cn(styles.top)}>
 					<img className={styles.imageMap} src="/images/map.png" alt="Логотип лукойла"/>
@@ -42,7 +47,10 @@ export default function HeadBlock (){
 				{menuItems.map((item, index) => <a href={item.to} onClick={onClick} key={index}>{item.title}</a>)}
 			</div>
 
-			<div className={styles.tableTop}><div>Голосование начнется<br/>в 10:00</div></div>
+			<div className={styles.tableTop}>
+				<button onClick={() => openYoutubeModal(video.id, timing.startVote)}><img src="/images/play.svg" alt="Проиграть видео"/></button>
+				<div>Голосование начнется<br/>в {getTime(timing.startVote)}</div>
+			</div>
 		</header>
 	)
 }

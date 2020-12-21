@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import cn from 'classnames'
-import { num } from 'libs/rus'
+import { getTime, num } from 'libs/rus'
 import { mutate } from 'swr'
 import { REST } from 'libs/fetch'
 
@@ -12,6 +12,7 @@ import { openCongrulationModal } from 'components/modal-window'
 import Stars from 'components/stars'
 
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import { useActive } from 'libs/active'
 
 const maxLength = 200
 function getPreview(str){
@@ -30,7 +31,10 @@ function getClassName (index){
 	return styles.background4
 }
 
-export default function ParticipantBlock ({ headerClassName, title, wishes, youtube_id, preview, index, likes, liked}){
+export default function ParticipantBlock ({ headerClassName, title, wishes, youtube_id, preview, index, likes, liked, timing}){
+	
+	const activeStart = useActive(timing.startVote)
+	const activeFinish = useActive(timing.finishVote)
 
 	const [ currentWish, setCurrentWish ] = useState(0)
 	const [ lastWish, setLastWish ] = useState(null)
@@ -47,15 +51,22 @@ export default function ParticipantBlock ({ headerClassName, title, wishes, yout
 	}
 
 	const onLike = async () => {
-	
+		if(Date.now() < timing.startVote || Date.now() > timing.finishVote) return 
 		const resp = await REST ('/api/likes', {index}, liked?'DELETE': 'POST')
 		if(!resp.error) mutate('/api')
+	}
+
+	const getLabel = () => {
+		if(!activeStart) return 'Голосование начнется в '+ getTime(timing.startVote)
+		if(activeFinish) return 'Голосование закончилось в ' + getTime(timing.finishVote)
+
+		return  'Голосование до '+ getTime(timing.finishVote)
 	}
 
 	return (
 		<div className={cn("h flex", getClassName(index))} id={"part-"+(index+1)}>
 			<h2 className={headerClassName}>Направление «{title}»</h2>
-			<Stars/>
+			<Stars index={index}/>
 			<div className={cn("content container", styles.container)}>
 				<img className={styles.hit} src="/images/hit-parad.png" alt="Хит парад"/>
 				<div>
@@ -81,7 +92,7 @@ export default function ParticipantBlock ({ headerClassName, title, wishes, yout
 								{liked?<img src="/images/like.svg" alt="Лайк"/>: <img src="/images/like-off.svg" alt="Лайк"/>}
 							</button>
 							<div className={styles.red}>{num(likes, "отметка", "отметки", "отметок")} «Нравится»</div>
-							<div>Голосование до 14.00</div>
+							{<div>{getLabel()}</div>}
 						</div>
 					</div>
 				</div>

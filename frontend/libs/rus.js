@@ -23,6 +23,13 @@ function _ (num){
 	return num
 }
 
+export function getTime(date){
+	if(!date) return
+	const dt = new Date(date)
+
+	return `${(dt.getHours())}:${_(dt.getMinutes())}`
+}
+
 export function getChatDate(date){
 	const dt = new Date(date)
 

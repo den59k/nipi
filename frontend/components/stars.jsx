@@ -15,17 +15,29 @@ function generateStars () {
 	return stars
 }
 
-export default function Stars (){
+const starsList = [
+	[{ scale: 0.8, right: 40 }, { scale: 0.4 }],
+	[{ scale: 0.3, right: 80 }, { scale: 0.8, top: 40 }],
+	[{ scale: 0.8, right: 40 }, { scale: 0.4 }],
+	[{ scale: 0.8, right: 40, top: 10 }, { scale: 0.4, right: 50 },  { scale: 0.9, top: 30 } ],
+]
 
-	const [ stars, setStars ] = useState(generateStars())
+function round(k, max){
+	if(k >= max)
+		return k % max
+	return k
+}
+
+export default function Stars ({index}){
+
+	const stars = starsList[round(index || 0, starsList.length)]
 
 	return (
 		<div className="stars">
 			{stars.map((item, index) => (
 				<img key={index} src="/images/star.png"	alt="Звезда" style={{
-					marginRight: -item.right+'px', 
-					marginTop: -item.top+'px',
-					transform: `scale(${item.scale})`
+					marginRight: -(item.right || 0)+'px', 
+					transform: `translateY(${item.top || 0}px) scale(${item.scale || 1})`
 				}}/>
 			))}
 		</div>

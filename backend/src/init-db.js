@@ -5,6 +5,12 @@ const indexes = {
 	users: { 
 		login: { unique: true },
 		token: { unique: true }
+	},
+	online: {
+		token: { unique: true }
+	},
+	likes: {
+		ip: {}
 	}
 }
 

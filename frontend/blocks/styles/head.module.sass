@@ -15,6 +15,7 @@
 
 		@media(max-width: 900px)
 			max-height: 18vmin
+			margin-right: 4vmin
 
 	.imageLogo
 		max-height: 90px
@@ -24,9 +25,6 @@
 		@media(max-width: 900px)
 			max-height: 10vmin
 
-	@media(max-width: 600px)
-		.imageMap, .imageLogo
-			display: none
 
 	.title
 		text-align: center
@@ -226,6 +224,20 @@
 
 	padding-top: 650px *0.75
 
+	button
+		position: absolute
+		width: 90%
+		left: 5%
+		right: 5%
+		bottom: 4%
+		height: 50%
+		background: none
+		transform: rotate(-7deg)
+		border: none
+		
+		img
+			width: 16%
+
 	@media(max-width: 1200px)
 		margin-left: -718px*0.5*0.6
 		width: 718px*0.6
@@ -238,6 +250,8 @@
 		height: 1009px*0.4
 		padding-top: 840px *0.4
 		top: -20px
+		button
+			height: 40%
 
 	@media(max-width: 500px)
 		margin-left: -50vw*0.5 * 1.2
@@ -246,6 +260,7 @@
 		padding-top: 58vw * 1.2
 		top: 0
 		font-size: 0.95em
+
 
 	@media(max-width: 350px)
 		width: 200px
