@@ -7,12 +7,12 @@ import { Parallax } from 'components/parallax'
 import { openYoutubeModal } from 'components/modal-window/youtube'
 
 const stars = [
-	{ title: "АУП и ВП", to: "/#part-6", className: styles.star1 },
-	{ title: "РАЗРАБОТКА", to: "/#part-1", className: styles.star2 },
-	{ title: "ПИР", to: "/#part-4", className: styles.star3 },
+	{ title: "АУП и ВП", to: "/#part-3", className: styles.star1 },
+	{ title: "РАЗРАБОТКА", to: "/#part-6", className: styles.star2 },
+	{ title: "ПИР", to: "/#part-5", className: styles.star3 },
 	{ title: "БУРЕНИЕ", to: "/#part-2", className: styles.star4 },
-	{ title: "ГЕОЛОГИЯ", to: "/#part-3", className: styles.star5 },
-	{ title: "ДОБЫЧА", to: "/#part-5", className: styles.star6 }
+	{ title: "ГЕОЛОГИЯ", to: "/#part-1", className: styles.star5 },
+	{ title: "ДОБЫЧА", to: "/#part-4", className: styles.star6 }
 ]
 
 const menuItems = [

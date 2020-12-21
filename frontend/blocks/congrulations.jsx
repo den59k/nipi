@@ -21,7 +21,7 @@ export default function Congrulations(){
 
 	return (
 		<div className="h flex" id="congrulations">
-			<Parallax src="/images/background-0.jpg" k={-0.4} className="cover"/>
+			<Parallax src="/images/background-0.jpg" style={{backgroundPosition: "left center"}} k={-0.4} className="cover"/>
 			<h2>Новогодние поздравления</h2>
 			<div className={cn("content container", styles.container)}>
 				<div>
