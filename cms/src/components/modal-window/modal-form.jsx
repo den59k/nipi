@@ -5,7 +5,7 @@ import { modal, ModalBase } from './index'
 
 
 export function ModalForm ({title, controls, className, onSubmit, defaultValues }){
-	console.log(defaultValues)
+
 	const form = useForm(defaultValues || {})
 
 	return (
