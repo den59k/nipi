@@ -34,12 +34,12 @@ const addCategoryModal = {
 }
 
 function addOrUpdateCategory(item){
-	console.log(item)
+
 	return async (values, form) => {
 		if(!values.title) return form.setErrors({title: "Название направления должно быть заполнено!"})
 		if(values.youtube) values.youtube_id = getId(values.youtube)
 
-		const resp = await REST(item?('/api/congrulations/'+item.id): '/api/congrulations', values, item?'PUT': 'POST')
+		const resp = await REST(item?('/api/congrulations/'+item._id): '/api/congrulations', values, item?'PUT': 'POST')
 		console.log(resp)
 		//if(resp.error) return form.setErrors(resp.error)
 		mutate('/api/congrulations')
