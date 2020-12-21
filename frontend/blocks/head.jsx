@@ -37,7 +37,7 @@ export default function HeadBlock ({timing}){
 						<h1>Энергия талантов</h1>
 						<div>«ПермНИПИнефть»</div>
 					</div>
-					<img className={styles.imageLogo} src="/images/logo-full.png" alt="Лукойл-инжениринг"/>
+					<img className={styles.imageLogo} src="/images/logo-f.png" alt="Лукойл-инжениринг"/>
 				</div>
 				<img className={styles.hitParad} src="/images/hit-parad.png" alt="Хит-парад"/>
 				{stars.map((item, index) => <Star {...item} key={index}/>)}
