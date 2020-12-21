@@ -5,7 +5,8 @@ const { toDotNotation } = require('../libs/db-extensions')
 
 const properties = {
 	title: { type: "string" },
-	youtube_id: { type: "string" }
+	youtube_id: { type: "string" },
+	wistia: { type: "string" }
 }
 
 const postSchema = { properties, required: [ "title" ] }
@@ -33,6 +34,7 @@ module.exports = function (app, db){
 	})
 
 	app.put('/congrulations/:_id', validate(postSchema), async(req, res) => {
+		console.log(req.body)
 		const resp = await updateCongrulation(collection, req.params._id, filterBody(req.body, properties))
 		res.json(resp)
 	})

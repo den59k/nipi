@@ -30,7 +30,8 @@ const firstCategory = {
 
 const addCategoryModal = {
 	title: { type: "text", label: "Название", placeholder: "Направление" },
-	youtube: { type: "text", label: "Youtube URL", placeholder: "youtube" }
+	youtube: { type: "text", label: "Youtube URL", placeholder: "youtube" },
+	wistia: { type: "text", label: "Wistia id", placeholder: "Wistia ID" }
 }
 
 function addOrUpdateCategory(item){

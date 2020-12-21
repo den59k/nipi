@@ -1,6 +1,6 @@
 import React from 'react'
 import useSWR from 'swr'
-import { GET, POST } from 'libs/fetch'
+import { GET } from 'libs/fetch'
 import Layout from 'components/layout'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { IoIosHome, IoIosChatbubbles, IoIosCamera, IoIosVideocam, IoMdPaper } from 'react-icons/io'
