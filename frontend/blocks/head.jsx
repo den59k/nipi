@@ -23,7 +23,7 @@ const menuItems = [
 	{ title: "Новогодний\nчат", to: "/#chat" },
 ]
 
-const video = { id: "uEaouwm3ebA" }
+const video = { id: "3B_0unsSTWo" }
 
 export default function HeadBlock ({timing}){
 
