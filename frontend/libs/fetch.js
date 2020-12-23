@@ -1,7 +1,13 @@
 export const GET = async(url) => {
 	console.log("Был запрос - "+url);
+
+	const headers = new Headers();
+	headers.append('pragma', 'no-cache');
+	headers.append('cache-control', 'no-cache');
+
 	const response = await fetch(url, {
-		method: 'GET'
+		method: 'GET',
+		headers
 	});
 
 	const json = await response.json();
@@ -20,7 +26,7 @@ export const REST = async (url, body, method) => {
 	});
 
 	const json = await response.json();
-
+	
 	return json;
 
 }

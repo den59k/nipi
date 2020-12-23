@@ -15,7 +15,8 @@ import participants from 'libs/participants'
 
 export default function MainPage({congrulations}) {
 
-	const { data } = useSWR('/api', GET, { refreshInterval: 5000 })
+	const { data } = useSWR('/api', GET, { refreshInterval: 5000, dedupingInterval: 0 })
+
   const _data = data || { photos: [],  messages: [], indexes: [], timing: {} }
 
 	useEffect(() => {

@@ -26,6 +26,9 @@ module.exports = async function(db){
 				await collection.createIndex({[key]: sort || 1}, index)
 			}
 
+			if(collectionName === 'likes')
+				collection.createIndex({ip: 1, index: 1}, { unique: true })
+			
 			console.log(`Collection ${chalk.cyan(collectionName)} created`)
 		}
 	}

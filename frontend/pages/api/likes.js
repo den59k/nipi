@@ -21,18 +21,21 @@ export default async (req, res) => {
 	
 	try{
 		if(req.method === 'POST'){
+		
 			if(!validate(req, res, schema)) return
-
-			await db.insertOne({ip: token, index: req.body.index})
-			await voteDB.updateOne({index: req.body.index}, { $inc: { likes: 1 }})
-			res.json({count: 1})
+			
+			const resp = await db.insertOne({ip: token, index: req.body.index})
+			if(resp.insertedCount > 0)
+				await voteDB.updateOne({index: req.body.index}, { $inc: { likes: 1 }})
+			res.json({count: resp.insertedCount})
 		}
 
 		if(req.method === 'DELETE'){
 			if(!validate(req, res, schema)) return
 
 			const resp = await db.deleteOne({ip: token, index: req.body.index})
-			await voteDB.updateOne({index: req.body.index}, { $inc: { likes: -1 }})
+			if(resp.deletedCount > 0)
+				await voteDB.updateOne({index: req.body.index}, { $inc: { likes: -1 }})
 
 			res.json({count: resp.deletedCount})
 		}

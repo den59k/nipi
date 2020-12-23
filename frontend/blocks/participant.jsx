@@ -51,9 +51,18 @@ export default function ParticipantBlock ({ wistia, headerClassName, title, wish
 	}
 
 	const onLike = async () => {
+		
 		if(Date.now() < timing.startVote || Date.now() > timing.finishVote) return 
+		
 		const resp = await REST ('/api/likes', {index}, liked?'DELETE': 'POST')
-		if(!resp.error) mutate('/api')
+		
+		if(!resp.error) mutate('/api', (data) => {
+			const indexes = liked?data.indexes.filter(item => item.index !== index): [...data.indexes, { index }]
+			const inc = liked?-1: 1
+			
+			const likes = data.likes.map(item => item.index === index?{...item, likes: item.likes + inc}: item)
+			return Object.assign({}, data, { indexes, likes })
+		}, false)
 	}
 
 	const getLabel = () => {
