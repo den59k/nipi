@@ -144,6 +144,15 @@
 
 
 .buttons
+	position: relative
+	div
+		position: absolute
+		left: 50%
+		top: 50%
+		pointer-events: none
+		transform: translate(-50%, -70%)
+		color: #818181
+		
 	button
 		background: none
 		border: none
@@ -157,6 +166,9 @@
 		transition: opacity 0.2s
 		@media(max-width: 500px)
 			margin: 0 1em
+
+		@media(max-width: 280px)
+			width: 3em
 
 		&:hover
 			opacity: 1

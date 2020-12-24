@@ -19,12 +19,14 @@ function YoutubeModal ({id, type}){
 	if(type === 'wistia')
 		return (
 			<div className={cn(styles.modal, styles.youtube)} >
+				<button onClick={modal.close} className={styles.closeButton}><img src="/images/icons/close.svg" alt="Закрыть окно"/></button>
 				<div dangerouslySetInnerHTML={{__html: getHtml(id)}}></div>
 			</div>
 		)
 
 	return (
 		<div className={cn(styles.modal, styles.youtube)}>
+			<button onClick={modal.close} className={styles.closeButton}><img src="/images/icons/close.svg" alt="Закрыть окно"/></button>
 			<iframe 
 				width="100%" 
 				height="100%" 

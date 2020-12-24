@@ -55,6 +55,7 @@ export default function GamesBlock(){
 			<div className={styles.container}>
 				<button className={cn(styles.leftButton, activeGame === 0 && styles.hide)} onClick={() => slide(-1)}>
 					<img src="/images/games/right-button.png" alt="Листать влево"/>
+					<div style={{left: "100%"}}>Листать</div>
 				</button>
 				{games.map((item, index) => (
 					<div className={cn(
@@ -66,6 +67,7 @@ export default function GamesBlock(){
 					</div>
 				))}
 				<button className={cn(styles.rightButton, activeGame === games.length-1 && styles.hide)} onClick={() => slide(1)}>
+					<div style={{right: "100%"}}>Листать</div>
 					<img src="/images/games/right-button.png" alt="Листать вправо"/>
 				</button>
 			</div>

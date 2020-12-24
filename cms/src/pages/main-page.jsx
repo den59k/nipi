@@ -15,6 +15,7 @@ defaultDate.setMilliseconds(0)
 const ms = defaultDate.getTime()
 
 const timing = {
+	start: { label: "Начало работы сайта" },
 	startVote: { label: "Начало голосования" },
 	finishVote: { label: "Окончание голосования" },
 	presents: { label: "Награждение" }

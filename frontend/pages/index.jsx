@@ -11,7 +11,6 @@ import ChatBlock from 'blocks/chat'
 import PhotoBlock from 'blocks/photo'
 import GamesBlock from 'blocks/games'
 
-import participants from 'libs/participants'
 
 export default function MainPage({congrulations}) {
 
@@ -34,7 +33,7 @@ export default function MainPage({congrulations}) {
 	return (
 		<Layout>
 			<HeadBlock timing={_data.timing}/>
-			<CongrulationsBlock/>
+			<CongrulationsBlock timing={_data.timing}/>
 			{congrulations.map((item, index) => <ParticipantBlock 
 				{...item} 
 				key={index}

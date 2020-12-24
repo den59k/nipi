@@ -17,7 +17,7 @@ const videos = [
 	}
 ]
 
-export default function Congrulations(){
+export default function Congrulations({timing}){
 
 	return (
 		<div className="h flex" id="congrulations">
@@ -31,7 +31,7 @@ export default function Congrulations(){
 								<div>{item.title}</div>
 								<div className={styles.name}>{item.name}</div>
 							</div>
-							<Video id={item.id} className="big"/>
+							<Video id={item.id} className="big" time={timing.start}/>
 						</div>
 					))}
 				</div>

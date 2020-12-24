@@ -91,12 +91,13 @@ export default function ParticipantBlock ({ wistia, headerClassName, title, wish
 								))}
 								{wishes.length > 1 && (<div className={styles.buttons}>
 									<button onClick={() => slide(-1)} className={cn(currentWish === 0 && styles.hide, styles.left)}></button>
+									<div>Листать</div>
 									<button onClick={() => slide(1)} className={cn(currentWish === wishes.length-1 && styles.hide)}></button>
 								</div>)}
 							</div>)}
 					</div>
 					<div>
-						<Video id={wistia || youtube_id} type={wistia?'wistia': 'youtube'} className={styles.video} preview={preview}/>
+						<Video id={wistia || youtube_id} time={timing.startVote} type={wistia?'wistia': 'youtube'} className={styles.video} preview={preview}/>
 						<div className={styles.likePanel}>
 							<button className={cn(styles.like, !liked && styles.likeOff)} onClick={onLike}>
 								{liked?<img src="/images/like.svg" alt="Лайк"/>: <img src="/images/like-off.svg" alt="Лайк"/>}
