@@ -3,7 +3,7 @@ import useSWR from 'swr'
 import { GET } from 'libs/fetch'
 import Layout from 'components/layout'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { IoIosHome, IoIosChatbubbles, IoIosCamera, IoIosVideocam, IoMdPaper } from 'react-icons/io'
+import { IoIosHome, IoIosChatbubbles, IoIosCamera, IoIosVideocam, IoMdPaper, IoIosStats } from 'react-icons/io'
 
 import AuthPage from 'pages/auth-page'
 import MainPage from 'pages/main-page'
@@ -11,13 +11,15 @@ import ChatPage from 'pages/chat-page'
 import PhotoPage from 'pages/photo-page'
 import VideoPage from 'pages/video-page'
 import ServicesPage from 'pages/services-page'
+import StatsPage from 'pages/stats-page'
 
 const menu = [
 	{ icon: <IoIosHome/>, title: "Главная страница", to: "/", component: <MainPage/> },
 	{ icon: <IoMdPaper/>, title: "Поздравления", to: "/congrulations", component: <ServicesPage/> },
 	{ icon: <IoIosChatbubbles/>, title: "Поздравления в чате", to: "/chat", component: <ChatPage/> },
 	{ icon: <IoIosCamera/>, title: "Фото-поздравления", to: "/photo", component: <PhotoPage/> },
-	{ icon: <IoIosVideocam/>, title: "Фото-поздравления", to: "/video", component: <VideoPage/> }
+	{ icon: <IoIosVideocam/>, title: "Фото-поздравления", to: "/video", component: <VideoPage/> },
+	{ icon: <IoIosStats/>, title: "Статистика", to: "/stats", component: <StatsPage/> }
 ]	
 
 export default function App() {

@@ -11,7 +11,8 @@ const indexes = {
 	},
 	likes: {
 		ip: {}
-	}
+	},
+	watches: {}
 }
 
 module.exports = async function(db){
@@ -28,6 +29,9 @@ module.exports = async function(db){
 
 			if(collectionName === 'likes')
 				collection.createIndex({ip: 1, index: 1}, { unique: true })
+
+			if(collectionName === 'watches')
+				collection.createIndex({ip: 1, id: 1}, { unique: true })
 			
 			console.log(`Collection ${chalk.cyan(collectionName)} created`)
 		}

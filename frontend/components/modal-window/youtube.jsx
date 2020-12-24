@@ -1,4 +1,5 @@
 import cn from 'classnames'
+import { REST } from 'libs/fetch'
 import { modal } from './index'
 
 import styles from './modal.module.sass'
@@ -40,7 +41,11 @@ function YoutubeModal ({id, type}){
 }
 
 export function openYoutubeModal (id, time, type){
-	if(time && Date.now() < time) return
+	if(time && Date.now() < time || !id) return
+	if(!localStorage.getItem(id)){
+		localStorage.setItem(id, true)
+		REST('/api/watches/'+id)
+	}
 
 	modal.open(<YoutubeModal id={id} type={type}/>)
 }

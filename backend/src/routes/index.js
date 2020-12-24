@@ -10,6 +10,7 @@ const photoRoutes = require('./photos')
 const videoRoutes = require('./videos')
 const congrulationsRoutes = require('./congrulations')
 const timingRoutes = require('./timing')
+const watchesRoutes = require('./watches')
 
 module.exports = function (app, db) {
 
@@ -24,6 +25,7 @@ module.exports = function (app, db) {
 	videoRoutes(app, db)
 	congrulationsRoutes(app, db)
 	timingRoutes(app, db)
+	watchesRoutes(app, db)
 
 	app.use(function(err, _req, res, _next) {
 		console.log("ERROR")
