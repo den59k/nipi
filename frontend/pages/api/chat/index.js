@@ -23,7 +23,7 @@ export default async (req, res) => {
 	
 		if(!validate(req, res, schema)) return
 		
-		const obj = {...req.body, time: Date.now(), accepted: true }
+		const obj = {...req.body, time: Date.now() }
 
 		const response = await db.insertOne(obj)
 
