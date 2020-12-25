@@ -48,7 +48,7 @@ export default function HeadBlock ({timing}){
 			</div>
 
 			<div className={styles.tableTop}>
-				<button onClick={() => openYoutubeModal(video.id)}><img src="/images/play.svg" alt="Проиграть видео"/></button>
+				<button onClick={() => openYoutubeModal(video.id)}><img src="/images/icons/play.svg" alt="Проиграть видео"/></button>
 				<div>Голосование начнется<br/>в {getTime(timing.startVote)}</div>
 			</div>
 		</header>

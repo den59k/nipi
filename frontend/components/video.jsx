@@ -11,7 +11,7 @@ export default function Video ({className, preview, id, time, children, type}){
 			className={cn(styles.video, className)} 
 			style={preview?{backgroundImage: `url(${preview})`}: {}}
 		>
-			<img src="/images/icons/play.svg" alt="play"/>
+			<img src="/images/play.svg" alt="play"/>
 			{children}
 		</button>
 	)
