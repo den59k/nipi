@@ -19,8 +19,8 @@ module.exports = function(app, db) {
 		const online = await db.collection('online').find({ time: { $gt: Date.now() - offset } }, {projection: {_id: 1}}).count()
 		const date = new Date()
 		if(online > 0){
-            await fs.promises.appendFile(process.cwd+'/../online.log', date.getHours() + ":" + _(date.getMinutes() + "; User online: "+online + "\n"))
+            await fs.promises.appendFile(__dirname+'/../../online.log', date.getHours() + ":" + _(date.getMinutes() + "; User online: "+online + "\n"))
         }
 	
-	}, 5000)
+	}, 60000)
 }
