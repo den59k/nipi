@@ -18,6 +18,7 @@ export default async (req, res) => {
 		token = nanoid(30)
 		res.setHeader("Set-Cookie", `token=${token};max-age=31536000; path=/;`)
 	}
+	return res.json({count: 0})
 	
 	try{
 		if(req.method === 'POST'){
