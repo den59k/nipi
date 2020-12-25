@@ -26,7 +26,7 @@ export default async (req, res) => {
 
 			await sharp(buffer).resize({width: 150, height: 150, fit: 'cover'}).jpeg({quality: 75}).toFile(publicPath+preview)
 
-			await db.insertOne({ src, preview, time: Date.now(), accepted: true })
+			await db.insertOne({ src, preview, time: Date.now() })
 
 			res.json({src, preview})
 		}catch(e){

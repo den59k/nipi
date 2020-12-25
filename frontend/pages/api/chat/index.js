@@ -25,12 +25,12 @@ export default async (req, res) => {
 	
 		if(!validate(req, res, schema)) return
 
-		let accepted = true;
+		let rejected = false;
 		
 		if(reg.test((req.body.name+ " " +req.body.surname + " "+req.body.unit).toLowerCase()) || reg.test(req.body.text.toLowerCase()))
-			accepted = false;
+			rejected = true;
 
-		const obj = {...req.body, time: Date.now(), accepted }
+		const obj = {...req.body, time: Date.now(), rejected }
 
 		const response = await db.insertOne(obj)
 
