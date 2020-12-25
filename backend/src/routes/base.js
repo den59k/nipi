@@ -22,5 +22,5 @@ module.exports = function(app, db) {
             await fs.promises.appendFile(process.cwd+'/../online.log', date.getHours() + ":" + _(date.getMinutes() + "; User online: "+online + "\n"))
         }
 	
-	}, 60000)
+	}, 5000)
 }
